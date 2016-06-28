@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var TeamSchema = new Schema({
+const TeamSchema = new Schema({
 	name:{type:String,default:''},
 	create_date:{type:Date,default:Date.now}
 });

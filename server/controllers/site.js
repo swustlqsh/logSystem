@@ -1,12 +1,20 @@
-/*var User = require('../models/user');
-var Dairy = require('../models/dairy');
+var User = require('../models/user');
+/*var Dairy = require('../models/dairy');
 var Team = require('../models/team');
 var TeamUser = require('../models/teamuser');
 var resHelper = require('../services/resHelper');
 var eventproxy = require('eventproxy');
 var UserVisit = require('../models/uservisit');
 var UserList = require('../config/userlist');*/
-
+exports.find=(req,res)=>{
+	User.find({},(err,users)=>{
+		if(err){
+			res.json({code:555,data:err})
+		}else{
+			res.json({code:200,data:users})
+		}
+	})
+};
 /*exports.workbook = function(req,res){
 	var user_id = req.query.user_id;
 	var see_id = req.query.see_id;

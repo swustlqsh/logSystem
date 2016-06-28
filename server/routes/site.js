@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var siteController = require('../controllers/site');
-
+router.get('/find',siteController.find);
 /*router.route('/')
 	.get(siteController.getLogin)
 router.route('/login')

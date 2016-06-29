@@ -10,12 +10,19 @@
     <nav class="navbar navbar-inverse" style="margin: 0;">
       <div class="container-fluid brand">
         <h4>topxgun工作日志</h4>
-        <!--<a class="navbar-brand">topxgun工作日志</a>-->
       </div>
     </nav>
-    <div class="col-md-12">
-        <login></login>
+    <div>
+      <p>
+        <a v-link="{path:'/list'}">list</a>
+        <a v-link="{path:'/login'}">login</a>
+      </p>
+      <router-view></router-view>
     </div>
+
+    <!--<div class="col-md-12">
+        <login></login>
+    </div>-->
   <!--<div class="col-md-3" style="padding: 0;border-right: solid 1px gray;height: 1024px">
     <list></list>
   </div>

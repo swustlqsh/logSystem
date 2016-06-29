@@ -4,6 +4,7 @@
   "author": "刘娟娟 <1003512331@qq.com>",
   "private": true,
   "scripts": {
+    "manager": "webpack-dev-server --inline --port 9001 --hot --content-base manager",
     "client": "webpack-dev-server --inline --port 9000 --hot --content-base client",
     "server": "node ./server/server.js",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"

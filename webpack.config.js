@@ -3,13 +3,12 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    "client/js/":['./client/js/main.js'],
-    "manager/js/":['./manager/js/main.js']
+    "client":['./client/js/main.js'],
+    "manager":['./manager/js/main.js']
   },
   output: {
     path:'[name]',
-    publicPath:'/js/',
-    filename: 'build.js'
+    filename: '[name].js'
   },
   resolveLoader: {
     root: path.join(__dirname, 'node_modules')

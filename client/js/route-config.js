@@ -10,7 +10,7 @@ export function configRouter(router){
             component:require('../views/login.vue')
         },
         '/list':{
-            component:require('../views/List.vue')
+            component:require('../views/user.vue')
         }
     })
 }

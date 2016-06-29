@@ -13,7 +13,7 @@
                     <th>昵称</th>
                     <th>邮箱</th>
                     <th>最后一次登录时间</th>
-                    <th>操作</th>
+                    <th>操作&nbsp;&nbsp;&nbsp;<button class="btn btn-info btn-sm">添加</button></th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +21,11 @@
                     <td>{{user.name?user.name:'匿名用户'}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.last_login|date}}</td>
-                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm">编辑</button>
+                        <button class="btn btn-info btn-sm">查看日志</button>
+                        <button class="btn btn-danger btn-sm">删除</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -35,7 +39,6 @@
         },
         data () {
             return {
-                msg:'团队列表',
                 teams:[],
                 users:[]
             }

@@ -6,19 +6,50 @@
             <span class="pull-right text-info hand" @click="updateTeam($index,team)">修改&nbsp;&nbsp;</span>
         </a>
     </div>
-    <div class="col-md-4">
-        <h3>人员管理</h3>
+    <div class="col-md-9" style="margin-top: 28px">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>昵称</th>
+                    <th>邮箱</th>
+                    <th>最后一次登录时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="user in users">
+                    <td>{{user.name?user.name:'匿名用户'}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.last_login|date}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 <script type="text/ecmascript-6">
     export default{
         ready() {
            this.find();
+           this.findUsers();
         },
         data () {
             return {
                 msg:'团队列表',
-                teams:[]
+                teams:[],
+                users:[]
+            }
+        },
+        filters:{
+            date(date){
+                let d=new Date(date);
+                let year=d.getFullYear();
+                let month=d.getMonth()>8?d.getMonth()+1:'0'+(d.getMonth()+1);
+                let da=d.getDate()>9?d.getDate():'0'+d.getDate();
+                let hour=d.getHours()>9?d.getHours():'0'+d.getHours();
+                let min=d.getMinutes()>9?d.getMinutes():'0'+d.getMinutes();
+                let sec=d.getSeconds()>9?d.getSeconds():'0'+d.getSeconds();
+                return year+'-'+month+'-'+da+' '+hour+':'+min+':'+sec;
             }
         },
         methods:{
@@ -26,6 +57,15 @@
                 this.$http.get('http://localhost:1234/team/find').then((res) => {
                     if(res.data.code==200){
                         this.teams=res.data.data;
+                    }
+                },(err) => {
+                    console.log(err);
+                });
+            },
+            findUsers(){
+                this.$http.get('http://localhost:1234/user/find').then((res) => {
+                    if(res.data.code==200){
+                        this.users=res.data.data;
                     }
                 },(err) => {
                     console.log(err);
@@ -41,8 +81,6 @@
                     _this.find();
                 });
                 document.getElementById('confirm').addEventListener('click',()=>{
-                    console.log(temp.value);
-                    console.log(team);
                     let teamObj={_id:team._id,name:temp.value};
                     _this.$http.post('http://localhost:1234/team/update',teamObj).then((res) => {
                         if(res.data.code==200){

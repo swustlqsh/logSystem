@@ -3,13 +3,15 @@
  */
 const Team = require('../models/team');
 exports.find=(req,res)=>{
-    Team.find({},(err,users)=>{
-        if(err){
-            res.json({code:555,data:err})
-        }else{
-            res.json({code:200,data:users})
-        }
-    })
+    Team.find({})
+        .sort({create_date:-1})
+        .exec((err,users)=>{
+            if(err){
+                res.json({code:555,data:err})
+            }else{
+                res.json({code:200,data:users})
+            }
+        })
 };
 exports.update=(req,res)=>{
     Team.update({_id:req.body._id},{$set:{name:req.body.name}},(err,data)=>{

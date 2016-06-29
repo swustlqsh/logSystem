@@ -4,8 +4,9 @@ const router = express.Router();
 const login = require('../controllers/site');
 const team = require('../controllers/team');
 const user = require('../controllers/user');
-router.get('/user/find',user.find);
-router.get('/team/find',team.find);
+router.get('/user/find',user.find)
+	  .post('/team/update',team.update)
+	  .get('/team/find',team.find);
 /*router.route('/')
 	.get(siteController.getLogin)
 router.route('/login')

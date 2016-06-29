@@ -7,7 +7,7 @@ Vue.use(VueResource);
 Vue.use(VueRouter);
 
 const app=Vue.extend({});
-const router=new VueRouter();
+const router=new VueRouter({hashbang:false});
 
 configRouter(router);
 

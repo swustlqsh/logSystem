@@ -6,18 +6,24 @@
 <script type="text/ecmascript-6">
     export default{
         ready() {
-            this.$http.get('http://localhost:1234/find').then((res) => {
-                if(res.data.code==200){
-                    this.users=res.data.data;
-                }
-            },(err) => {
-                console.log(err);
-            });
+           this.find();
         },
         data () {
             return {
                 msg:'团队列表',
                 users:[]
+            }
+        },
+        methods:{
+            find(){
+                this.$http.get('http://localhost:1234/find').then((res) => {
+                    if(res.data.code==200){
+                        console.log(res.data.data);
+                        this.users=res.data.data;
+                    }
+                },(err) => {
+                    console.log(err);
+                });
             }
         }
     }

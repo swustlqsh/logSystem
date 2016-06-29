@@ -19,7 +19,7 @@
         },
         methods:{
             find(){
-                this.$http.get('http://localhost:1234/find').then((res) => {
+                this.$http.get('http://localhost:1234/user/find').then((res) => {
                     if(res.data.code==200){
                         this.users=res.data.data;
                     }

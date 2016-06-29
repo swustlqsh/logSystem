@@ -1,8 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var siteController = require('../controllers/site');
-router.get('/find',siteController.find);
+const login = require('../controllers/site');
+const team = require('../controllers/team');
+const user = require('../controllers/user');
+router.get('/user/find',user.find);
+router.get('/team/find',team.find);
 /*router.route('/')
 	.get(siteController.getLogin)
 router.route('/login')

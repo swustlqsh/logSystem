@@ -14,3 +14,7 @@
 .inBorder{
     border-right: none
 }
+.addTeam{
+    margin: 25px;
+    padding: 20px;
+}

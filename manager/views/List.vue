@@ -104,37 +104,41 @@
                 }
             },
             insert(){
-                var newA=document.createElement('a');
-                newA.setAttribute('class','list-group-item inBorder');
-                newA.innerHTML="<input type='text' id='insertTemp'>" +
-                        "<span id='insertCancel' class='pull-right text-info hand'>取消&nbsp;&nbsp;</span>" +
-                        "<span id='insertConfirm' class='pull-right text-info hand'>确定&nbsp;&nbsp;</span>";
-                if(this.teams[0]&&this.teams[0]._id){
-                    let aFirst=document.getElementById(this.teams[0]._id);
-                    document.getElementById('teamList').insertBefore(newA,aFirst);
-                }else{
-                    document.getElementById('teamList').appendChild(newA);
-                }
-                document.getElementById('insertCancel').addEventListener('click',()=>{
-                    document.getElementById('teamList').removeChild(document.getElementById('teamList').children[2]);
-                    this.find();
-                });
-                document.getElementById('insertConfirm').addEventListener('click',()=>{
-                    let name=document.getElementById('insertTemp').value;
-                    if(!name){
-                        alert('请完善信息！')
+                if(document.getElementById('insertTemp')==undefined){
+                    var newA=document.createElement('a');
+                    newA.setAttribute('class','list-group-item inBorder');
+                    newA.innerHTML="<input type='text' id='insertTemp'>" +
+                            "<span id='insertCancel' class='pull-right text-info hand'>取消&nbsp;&nbsp;</span>" +
+                            "<span id='insertConfirm' class='pull-right text-info hand'>确定&nbsp;&nbsp;</span>";
+                    if(this.teams[0]&&this.teams[0]._id){
+                        let aFirst=document.getElementById(this.teams[0]._id);
+                        document.getElementById('teamList').insertBefore(newA,aFirst);
                     }else{
-                        let teamObj={name:name};
-                        this.$http.post('http://localhost:1234/team/insert',teamObj).then((res)=>{
-                            if(res.data.code==200){
-                                document.getElementById('teamList').removeChild(document.getElementById('teamList').children[2]);
-                                this.find();
-                            }
-                        },(err)=>{
-                            console.log(err);
-                        })
+                        document.getElementById('teamList').appendChild(newA);
                     }
-                });
+                    document.getElementById('insertCancel').addEventListener('click',()=>{
+                        document.getElementById('teamList').removeChild(document.getElementById('teamList').children[2]);
+                        this.find();
+                    });
+                    document.getElementById('insertConfirm').addEventListener('click',()=>{
+                        let name=document.getElementById('insertTemp').value;
+                        if(!name){
+                            alert('请填写部门名称！')
+                        }else{
+                            let teamObj={name:name};
+                            this.$http.post('http://localhost:1234/team/insert',teamObj).then((res)=>{
+                                if(res.data.code==200){
+                                    document.getElementById('teamList').removeChild(document.getElementById('teamList').children[2]);
+                                    this.find();
+                                }
+                            },(err)=>{
+                                console.log(err);
+                            })
+                        }
+                    });
+                }else{
+                    alert('有其他添加部门的操作，请不要同时进行操作！')
+                }
             },
             remove(teamId){
                 this.$http.delete('http://localhost:1234/team/'+teamId).then((res)=>{

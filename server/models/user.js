@@ -5,6 +5,7 @@ const UserSchema = new Schema({
 	name:{type:String,default:''},
 	email:{type:String,default:''},
 	team:{type:ObjectId,ref:'Team'},
+	create_date:{type:Date,default:Date.now},
 	last_login:{type:Date}
 });
 	

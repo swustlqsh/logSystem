@@ -1,28 +1,29 @@
 <template>
     <div class="list-group col-md-3 outBorder">
         <button class="btn btn-info" @click="insert()" style="margin: 15px">添加部门</button>
-        <a id="user{{$index}}" class="list-group-item inBorder" v-for="team in teams">{{team.name}}
+        <a id="team{{$index}}" class="list-group-item inBorder" v-for="team in teams">{{team.name}}
             <span class="pull-right text-info hand" @click="remove(team._id)">删除&nbsp;&nbsp;</span>
             <span class="pull-right text-info hand" @click="updateTeam($index,team)">修改&nbsp;&nbsp;</span>
         </a>
     </div>
     <div class="col-md-9" style="margin-top: 20px">
-        <table class="table table-hover">
+        <table id="userTable" class="table table-hover">
             <thead>
                 <tr>
                     <th>昵称</th>
                     <th>邮箱</th>
                     <th>所属部门</th>
                     <th>最后一次登录时间</th>
-                    <th>操作&nbsp;&nbsp;&nbsp;<button class="btn btn-info btn-sm">添加</button></th>
+                    <th>操作&nbsp;&nbsp;&nbsp;<button class="btn btn-info btn-sm" @click="userInsert()">添加</button></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr v-for="user in users">
+            <tbody id="userTbody">
+                <tr  v-for="user in users">
                     <td>{{user.name?user.name:'匿名用户'}}</td>
                     <td>{{user.email}}</td>
-                    <td>未设置</td>
-                    <td>{{user.last_login|date}}</td>
+                    <td>{{(user.team&&user.team.name)?user.team.name:'未设置'}}</td>
+                    <td v-if="user.last_login">{{user.last_login|date}}</td>
+                    <td v-if="!user.last_login">未登录</td>
                     <td>
                         <button class="btn btn-info btn-sm">编辑</button>
                         <button class="btn btn-info btn-sm">查看日志</button>
@@ -42,7 +43,8 @@
         data () {
             return {
                 teams:[],
-                users:[]
+                users:[],
+                user:{}
             }
         },
         filters:{
@@ -79,7 +81,7 @@
             updateTeam($index,team){
                 if(document.getElementById('temp')==undefined){
                     let _this=this;
-                    let text=document.getElementById('user'+$index);
+                    let text=document.getElementById('team'+$index);
                     text.innerHTML="<input type='text' id='temp' value="+team.name+">" +
                             "<span id='cancel' class='pull-right text-info hand'>取消&nbsp;&nbsp;</span>" +
                             "<span id='confirm' class='pull-right text-info hand'>确定&nbsp;&nbsp;</span>";
@@ -91,6 +93,7 @@
                         _this.$http.post('http://localhost:1234/team/update',teamObj).then((res) => {
                             if(res.data.code==200){
                                 _this.find();
+                                _this.findUsers();
                             }
                         },(err) => {
                             console.log(err);
@@ -120,6 +123,46 @@
                 },(err)=>{
                     console.log(err);
                 })
+            },
+            userInsert(){
+                if(document.getElementById('td0')==undefined){
+                    let tr=document.getElementById('userTbody').insertRow(0);
+                    let td0=tr.insertCell(0);
+                    let td1=tr.insertCell(1);
+                    let td2=tr.insertCell(2);
+                    let td3=tr.insertCell(3);
+                    let td4=tr.insertCell(4);
+                    let options='<option value="">--请选择--</option>';
+                    let teams=this.teams;
+                    for(let i of teams){
+                        options+='<option value="'+i._id+'">'+i.name+'</option>'
+                    }
+                    td0.innerHTML='<input type="text" id="td0">';
+                    td1.innerHTML='<input type="text" id="td1">';
+                    td2.innerHTML='<select id="select">' + options+ '</select>';
+                    td4.innerHTML='<button class="btn btn-info btn-sm" id="userConfirm">确定</button>&nbsp;' +
+                            '<button class="btn btn-info btn-sm">取消</button>';
+                    document.getElementById('userConfirm').addEventListener('click',()=>{
+                        let value0=document.getElementById('td0').value;
+                        let value1=document.getElementById('td1').value;
+                        let value2=document.getElementById('select').value;
+                        if(value0&&value1&&value2){
+                            let userObj={name:value0,email:value1,team:value2};
+                            this.$http.post('http://localhost:1234/user/insert',userObj).then((res)=>{
+                                if(res.data.code==200){
+                                    document.getElementById('userTbody').deleteRow(0);
+                                    this.findUsers();
+                                }
+                            },(err)=>{
+                                console.log(err);
+                            })
+                        }else{
+                            alert('请完善信息！')
+                        }
+                    });
+                }else{
+                    alert('有其他添加员工操作，请不要同时操作！')
+                }
             }
         }
     }

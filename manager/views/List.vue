@@ -156,7 +156,7 @@
                             this.$http.post('http://localhost:1234/user/insert',userObj).then((res)=>{
                                 if(res.data.code==200){
                                     document.getElementById('userTbody').deleteRow(0);
-                                    this.findUsers();
+                                    this.findUsers(this.activeTeam);
                                 }
                             },(err)=>{
                                 console.log(err);

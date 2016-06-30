@@ -11,6 +11,10 @@ export function configRouter(router){
         },
         '/list':{
             component:require('../views/List.vue')
+        },
+        '/auth/:userId':{
+            name:'auth',
+            component:require('../views/Auth.vue')
         }
     })
 }

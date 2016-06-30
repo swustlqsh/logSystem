@@ -42,7 +42,7 @@
     export default{
         ready() {
            this.find();
-           this.findUsers('111111111111111111111111');
+           this.findUsers(this.activeTeam);
         },
         data () {
             return {
@@ -146,7 +146,7 @@
                     td1.innerHTML='<input type="text" id="td1">';
                     td2.innerHTML='<select id="select">' + options+ '</select>';
                     td4.innerHTML='<button class="btn btn-info btn-sm" id="userConfirm">确定</button>&nbsp;' +
-                            '<button class="btn btn-info btn-sm">取消</button>';
+                            '<button class="btn btn-info btn-sm" id="userCancel">取消</button>';
                     document.getElementById('userConfirm').addEventListener('click',()=>{
                         let value0=document.getElementById('td0').value;
                         let value1=document.getElementById('td1').value;
@@ -165,6 +165,10 @@
                             alert('请完善信息！')
                         }
                     });
+                    document.getElementById('userCancel').addEventListener('click',()=>{
+                        document.getElementById('userTbody').deleteRow(0);
+                        this.findUsers(this.activeTeam);
+                    });
                 }else{
                     alert('有其他添加员工操作，请不要同时操作！')
                 }
@@ -172,8 +176,8 @@
             activeChange(id){
                 document.getElementById(this.activeTeam).setAttribute('class','list-group-item inBorder');
                 this.activeTeam=id;
-                document.getElementById(id).setAttribute('class','list-group-item inBorder bg-grey');
-                this.findUsers(id)
+                document.getElementById(this.activeTeam).setAttribute('class','list-group-item inBorder bg-grey');
+                this.findUsers(this.activeTeam)
             }
         }
     }

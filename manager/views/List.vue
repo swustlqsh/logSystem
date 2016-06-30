@@ -1,9 +1,13 @@
 <template>
     <div class="list-group col-md-3 outBorder">
         <button class="btn btn-info" @click="insert()" style="margin: 15px">添加部门</button>
-        <a id="team{{$index}}" class="list-group-item inBorder" v-for="team in teams">{{team.name}}
+        <a id="111111111111111111111111" class="list-group-item inBorder bg-grey" @click="activeChange('111111111111111111111111')">
+            <span @click="activeChange('111111111111111111111111')" class="hand">topxgun</span>
+            </a>
+        <a id='{{team._id}}' class="list-group-item inBorder" v-for="team in teams">
+            <span @click="activeChange(team._id)" class="hand">{{team.name}}</span>
             <span class="pull-right text-info hand" @click="remove(team._id)">删除&nbsp;&nbsp;</span>
-            <span class="pull-right text-info hand" @click="updateTeam($index,team)">修改&nbsp;&nbsp;</span>
+            <span class="pull-right text-info hand" @click="updateTeam(team)">修改&nbsp;&nbsp;</span>
         </a>
     </div>
     <div class="col-md-9" style="margin-top: 20px">
@@ -38,13 +42,14 @@
     export default{
         ready() {
            this.find();
-           this.findUsers();
+           this.findUsers('111111111111111111111111');
         },
         data () {
             return {
                 teams:[],
                 users:[],
-                user:{}
+                user:{},
+                activeTeam:'111111111111111111111111'
             }
         },
         filters:{
@@ -69,8 +74,8 @@
                     console.log(err);
                 });
             },
-            findUsers(){
-                this.$http.get('http://localhost:1234/user/find').then((res) => {
+            findUsers(teamId){
+                this.$http.get('http://localhost:1234/user/findByTeam/'+teamId).then((res) => {
                     if(res.data.code==200){
                         this.users=res.data.data;
                     }
@@ -78,10 +83,10 @@
                     console.log(err);
                 });
             },
-            updateTeam($index,team){
+            updateTeam(team){
                 if(document.getElementById('temp')==undefined){
                     let _this=this;
-                    let text=document.getElementById('team'+$index);
+                    let text=document.getElementById(team._id);
                     text.innerHTML="<input type='text' id='temp' value="+team.name+">" +
                             "<span id='cancel' class='pull-right text-info hand'>取消&nbsp;&nbsp;</span>" +
                             "<span id='confirm' class='pull-right text-info hand'>确定&nbsp;&nbsp;</span>";
@@ -163,6 +168,12 @@
                 }else{
                     alert('有其他添加员工操作，请不要同时操作！')
                 }
+            },
+            activeChange(id){
+                document.getElementById(this.activeTeam).setAttribute('class','list-group-item inBorder');
+                this.activeTeam=id;
+                document.getElementById(id).setAttribute('class','list-group-item inBorder bg-grey');
+                this.findUsers(id)
             }
         }
     }

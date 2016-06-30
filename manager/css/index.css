@@ -15,5 +15,8 @@
     border-right: none
 }
 .hand{
-    cursor: hand;
+    cursor: pointer;
+}
+.bg-grey{
+    background-color: #f5f5f5;
 }

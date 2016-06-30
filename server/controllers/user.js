@@ -3,8 +3,13 @@
  */
 'use strict';
 const User = require('../models/user');
-exports.find=(req,res)=>{
-    User.find({})
+exports.findByTeam=(req,res)=>{
+    console.log(req.params);
+    let query={};
+    if(req.params._id!='111111111111111111111111'){
+        query.team=req.params._id
+    }
+    User.find(query)
     .sort({create_date:-1})
     .populate('team')
     .exec((err,users)=>{

@@ -6,6 +6,8 @@ const team = require('../controllers/team');
 const user = require('../controllers/user');
 router.get('/user/find',user.find)
 	  .post('/team/update',team.update)
+	  .post('/team/insert',team.insert)
+	  .delete('/team/:_id',team.remove)
 	  .get('/team/find',team.find);
 /*router.route('/')
 	.get(siteController.getLogin)

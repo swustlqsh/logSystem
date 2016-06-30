@@ -7,7 +7,7 @@
         <a id='{{team._id}}' class="list-group-item inBorder" v-for="team in teams">
             <span @click="activeChange(team._id)" class="hand">{{team.name}}</span>
             <span class="pull-right text-info hand" @click="remove(team._id)">删除&nbsp;&nbsp;</span>
-            <span class="pull-right text-info hand" @click="updateTeam(team)">修改&nbsp;&nbsp;</span>
+            <span class="pull-right text-info hand" @click="update(team)">修改&nbsp;&nbsp;</span>
         </a>
     </div>
     <div class="col-md-9" style="margin-top: 20px">
@@ -18,20 +18,20 @@
                     <th>邮箱</th>
                     <th>所属部门</th>
                     <th>最后一次登录时间</th>
-                    <th>操作&nbsp;&nbsp;&nbsp;<button class="btn btn-info btn-sm" @click="userInsert()">添加</button></th>
+                    <th>操作&nbsp;&nbsp;&nbsp;<button class="btn btn-info btn-sm" @click="insertUser()">添加</button></th>
                 </tr>
             </thead>
             <tbody id="userTbody">
-                <tr  v-for="user in users">
+                <tr  v-for="user in users" id="{{user._id}}">
                     <td>{{user.name?user.name:'匿名用户'}}</td>
                     <td>{{user.email}}</td>
                     <td>{{(user.team&&user.team.name)?user.team.name:'未设置'}}</td>
                     <td v-if="user.last_login">{{user.last_login|date}}</td>
                     <td v-if="!user.last_login">未登录</td>
                     <td>
-                        <button class="btn btn-info btn-sm">编辑</button>
+                        <button class="btn btn-info btn-sm" @click="updateUser(user)">编辑</button>
                         <button class="btn btn-info btn-sm">查看日志</button>
-                        <button class="btn btn-danger btn-sm">删除</button>
+                        <button class="btn btn-danger btn-sm" @click="removeUser(user._id)">删除</button>
                     </td>
                 </tr>
             </tbody>
@@ -74,16 +74,7 @@
                     console.log(err);
                 });
             },
-            findUsers(teamId){
-                this.$http.get('http://localhost:1234/user/findByTeam/'+teamId).then((res) => {
-                    if(res.data.code==200){
-                        this.users=res.data.data;
-                    }
-                },(err) => {
-                    console.log(err);
-                });
-            },
-            updateTeam(team){
+            update(team){
                 if(document.getElementById('temp')==undefined){
                     let _this=this;
                     let text=document.getElementById(team._id);
@@ -129,7 +120,16 @@
                     console.log(err);
                 })
             },
-            userInsert(){
+            findUsers(teamId){
+                this.$http.get('http://localhost:1234/user/findByTeam/'+teamId).then((res) => {
+                    if(res.data.code==200){
+                        this.users=res.data.data;
+                    }
+                },(err) => {
+                    console.log(err);
+                });
+            },
+            insertUser(){
                 if(document.getElementById('td0')==undefined){
                     let tr=document.getElementById('userTbody').insertRow(0);
                     let td0=tr.insertCell(0);
@@ -178,6 +178,52 @@
                 this.activeTeam=id;
                 document.getElementById(this.activeTeam).setAttribute('class','list-group-item inBorder bg-grey');
                 this.findUsers(this.activeTeam)
+            },
+            updateUser(user){
+                let tds=document.getElementById(user._id).children;
+                let teams=this.teams;
+                let options='<option value="">--请选择--</option>';
+                for(let i of teams){
+                    if(user.team&&(i._id==user.team._id)){
+                        options+='<option selected value="'+i._id+'">'+i.name+'</option>'
+                    }else{
+                        options+='<option value="'+i._id+'">'+i.name+'</option>'
+                    }
+                }
+                tds[0].innerHTML="<input type='text' id='userUpdateTd0' value='"+user.name+"'>";
+                tds[1].innerHTML="<input type='text' id='userUpdateTd1' value='"+user.email+"'>";
+                tds[2].innerHTML='<select id="userUpdateTd2">' + options+ '</select>';
+                tds[4].innerHTML='<button class="btn btn-info btn-sm" id="userUpdateConfirm">确定</button>&nbsp;' +
+                        '<button class="btn btn-info btn-sm" id="userUpdateCancel">取消</button>';
+                document.getElementById('userUpdateConfirm').addEventListener('click',()=>{
+                    let value0=document.getElementById('userUpdateTd0').value;
+                    let value1=document.getElementById('userUpdateTd1').value;
+                    let value2=document.getElementById('userUpdateTd2').value;
+                    if(value0&&value1&&value2){
+                        let userObj={_id:user._id,name:value0,email:value1,team:value2};
+                        this.$http.post('http://localhost:1234/user/update',userObj).then((res)=>{
+                            if(res.data.code==200){
+                                this.findUsers(this.activeTeam);
+                            }
+                        },(err)=>{
+                            console.log(err);
+                        })
+                    }else{
+                        alert('请完善信息！')
+                    }
+                });
+                document.getElementById('userUpdateCancel').addEventListener('click',()=>{
+                    this.findUsers(this.activeTeam);
+                });
+            },
+            removeUser(userId){
+                this.$http.delete('http://localhost:1234/user/'+userId).then((res)=>{
+                   if(res.data.code==200){
+                        this.findUsers(this.activeTeam);
+                    }
+                },(err)=>{
+                    console.log(err);
+                })
             }
         }
     }

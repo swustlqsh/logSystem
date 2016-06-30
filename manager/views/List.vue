@@ -178,7 +178,7 @@
                         options+='<option value="'+i._id+'">'+i.name+'</option>'
                     }
                     td0.innerHTML='<input type="text" size="20" placeholder="最大20字符" maxlength="20" id="td0">';
-                    td1.innerHTML='<input type="text" size="30" placeholder="最大30字符" maxlength="30" id="td1">';
+                    td1.innerHTML='<input type="email" size="30" placeholder="最大30字符" maxlength="30" id="td1">';
                     td2.innerHTML='<select id="select">' + options+ '</select>';
                     td4.innerHTML='<button class="btn btn-info btn-sm" id="userConfirm">确定</button>&nbsp;' +
                             '<button class="btn btn-info btn-sm" id="userCancel">取消</button>';
@@ -187,17 +187,22 @@
                         let value1=document.getElementById('td1').value;
                         let value2=document.getElementById('select').value;
                         if(value0&&value1&&value2){
-                            let userObj={name:value0,email:value1,team:value2};
-                            this.$http.post('http://localhost:1234/user/insert',userObj).then((res)=>{
-                                if(res.data.code==201){
-                                    alert('此邮箱已注册，不可重复注册！')
-                                }else if(res.data.code==200){
-                                    document.getElementById('userTbody').deleteRow(0);
-                                    this.findUsers(this.activeTeam);
-                                }
-                            },(err)=>{
-                                console.log(err);
-                            })
+                            let reg= /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                            if(!value1.match(reg)){
+                                alert('邮箱不匹配！')
+                            }else{
+                                let userObj={name:value0,email:value1,team:value2};
+                                this.$http.post('http://localhost:1234/user/insert',userObj).then((res)=>{
+                                    if(res.data.code==201){
+                                        alert('此邮箱已注册，不可重复注册！')
+                                    }else if(res.data.code==200){
+                                        document.getElementById('userTbody').deleteRow(0);
+                                        this.findUsers(this.activeTeam);
+                                    }
+                                },(err)=>{
+                                    console.log(err);
+                                })
+                            }
                         }else{
                             alert('请完善信息！')
                         }
@@ -229,7 +234,7 @@
                         }
                     }
                     tds[0].innerHTML = "<input type='text' size='20' maxlength='20' placeholder='最大20字符' id='userUpdateTd0' value='" + user.name + "'>";
-                    tds[1].innerHTML = "<input type='text' size='30' maxlength='30' placeholder='最大30字符' id='userUpdateTd1' value='" + user.email + "'>";
+                    tds[1].innerHTML = "<input type='email' size='30' maxlength='30' placeholder='最大30字符' id='userUpdateTd1' value='" + user.email + "'>";
                     tds[2].innerHTML = '<select id="userUpdateTd2">' + options + '</select>';
                     tds[4].innerHTML = '<button class="btn btn-info btn-sm" id="userUpdateConfirm">确定</button>&nbsp;' +
                             '<button class="btn btn-info btn-sm" id="userUpdateCancel">取消</button>';
@@ -238,16 +243,21 @@
                         let value1 = document.getElementById('userUpdateTd1').value;
                         let value2 = document.getElementById('userUpdateTd2').value;
                         if (value0 && value1 && value2) {
-                            let userObj = {_id: user._id, name: value0, email: value1, team: value2};
-                            this.$http.post('http://localhost:1234/user/update', userObj).then((res)=> {
-                                if(res.data.code==201){
-                                    alert('此邮箱已注册，不可重复注册！')
-                                }else if (res.data.code == 200) {
-                                    this.findUsers(this.activeTeam);
-                                }
-                            }, (err)=> {
-                                console.log(err);
-                            })
+                            let reg= /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                            if(!value1.match(reg)){
+                                alert('邮箱不匹配！')
+                            }else{
+                                let userObj = {_id: user._id, name: value0, email: value1, team: value2};
+                                this.$http.post('http://localhost:1234/user/update', userObj).then((res)=> {
+                                    if(res.data.code==201){
+                                        alert('此邮箱已注册，不可重复注册！')
+                                    }else if (res.data.code == 200) {
+                                        this.findUsers(this.activeTeam);
+                                    }
+                                }, (err)=> {
+                                    console.log(err);
+                                })
+                            }
                         } else {
                             alert('请完善信息！')
                         }

@@ -78,7 +78,7 @@
                 if(document.getElementById('temp')==undefined){
                     let _this=this;
                     let text=document.getElementById(team._id);
-                    text.innerHTML="<input type='text' id='temp' value="+team.name+">" +
+                    text.innerHTML="<input type='text' id='temp' size='20' maxlength='20' placeholder='最大20字符' value="+team.name+">" +
                             "<span id='cancel' class='pull-right text-info hand'>取消&nbsp;&nbsp;</span>" +
                             "<span id='confirm' class='pull-right text-info hand'>确定&nbsp;&nbsp;</span>";
                     document.getElementById('cancel').addEventListener('click',()=>{
@@ -107,7 +107,7 @@
                 if(document.getElementById('insertTemp')==undefined){
                     var newA=document.createElement('a');
                     newA.setAttribute('class','list-group-item inBorder');
-                    newA.innerHTML="<input type='text' id='insertTemp'>" +
+                    newA.innerHTML="<input type='text' size='20' maxlength='20' placeholder='最大20字符' id='insertTemp'>" +
                             "<span id='insertCancel' class='pull-right text-info hand'>取消&nbsp;&nbsp;</span>" +
                             "<span id='insertConfirm' class='pull-right text-info hand'>确定&nbsp;&nbsp;</span>";
                     if(this.teams[0]&&this.teams[0]._id){
@@ -173,8 +173,8 @@
                     for(let i of teams){
                         options+='<option value="'+i._id+'">'+i.name+'</option>'
                     }
-                    td0.innerHTML='<input type="text" id="td0">';
-                    td1.innerHTML='<input type="text" id="td1">';
+                    td0.innerHTML='<input type="text" size="20" placeholder="最大20字符" maxlength="20" id="td0">';
+                    td1.innerHTML='<input type="text" size="30" placeholder="最大30字符" maxlength="30" id="td1">';
                     td2.innerHTML='<select id="select">' + options+ '</select>';
                     td4.innerHTML='<button class="btn btn-info btn-sm" id="userConfirm">确定</button>&nbsp;' +
                             '<button class="btn btn-info btn-sm" id="userCancel">取消</button>';
@@ -222,8 +222,8 @@
                             options += '<option value="' + i._id + '">' + i.name + '</option>'
                         }
                     }
-                    tds[0].innerHTML = "<input type='text' id='userUpdateTd0' value='" + user.name + "'>";
-                    tds[1].innerHTML = "<input type='text' id='userUpdateTd1' value='" + user.email + "'>";
+                    tds[0].innerHTML = "<input type='text' size='20' maxlength='20' placeholder='最大20字符' id='userUpdateTd0' value='" + user.name + "'>";
+                    tds[1].innerHTML = "<input type='text' size='30' maxlength='30' placeholder='最大30字符' id='userUpdateTd1' value='" + user.email + "'>";
                     tds[2].innerHTML = '<select id="userUpdateTd2">' + options + '</select>';
                     tds[4].innerHTML = '<button class="btn btn-info btn-sm" id="userUpdateConfirm">确定</button>&nbsp;' +
                             '<button class="btn btn-info btn-sm" id="userUpdateCancel">取消</button>';

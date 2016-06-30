@@ -16,21 +16,41 @@ exports.find=(req,res)=>{
         })
 };
 exports.update=(req,res)=>{
-    Team.update({_id:req.body._id},{$set:{name:req.body.name}},(err,data)=>{
+    Team.count({_id:{$ne:req.body._id},name:req.body.name},(err,count)=>{
         if(err){
             res.json({code:555,data:err})
         }else{
-            res.json({code:200,data:data})
+            if(count>0){
+                res.json({code:201,data:count})
+            }else{
+                Team.update({_id:req.body._id},{$set:{name:req.body.name}},(err,data)=>{
+                    if(err){
+                        res.json({code:555,data:err})
+                    }else{
+                        res.json({code:200,data:data})
+                    }
+                })
+            }
         }
     })
 };
 exports.insert=(req,res)=>{
-    let teamObj=new Team({name:req.body.name});
-    teamObj.save((err,data)=>{
+    Team.count({name:req.body.name},(err,count)=>{
         if(err){
             res.json({code:555,data:err})
         }else{
-            res.json({code:200,data:data})
+            if(count>0){
+                res.json({code:201,data:count})
+            }else{
+                let teamObj=new Team({name:req.body.name});
+                teamObj.save((err,data)=>{
+                    if(err){
+                        res.json({code:555,data:err})
+                    }else{
+                        res.json({code:200,data:data})
+                    }
+                })
+            }
         }
     })
 };

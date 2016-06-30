@@ -20,25 +20,47 @@ exports.findByTeam=(req,res)=>{
     })
 };
 exports.insert=(req,res)=>{
-    let userObj=new User(req.body);
-    userObj.save((err,users)=>{
+    User.count({email:req.body.email},(err,count)=>{
         if(err){
             res.json({code:555,data:err})
         }else{
-            res.json({code:200,data:users})
+            if(count>0){
+                res.json({code:201,data:count})
+            }else{
+                let userObj=new User(req.body);
+                userObj.save((err,users)=>{
+                    if(err){
+                        res.json({code:555,data:err})
+                    }else{
+                        res.json({code:200,data:users})
+                    }
+                })
+            }
         }
     })
+
 };
 exports.update=(req,res)=>{
     let _id=req.body._id;
     delete req.body._id;
-    User.update({_id:_id},{$set:req.body},(err,data)=>{
+    User.count({_id:{$ne:_id},email:req.body.email},(err,count)=>{
         if(err){
             res.json({code:555,data:err})
         }else{
-            res.json({code:200,data:data})
+            if(count>0){
+                res.json({code:201,data:count})
+            }else{
+                User.update({_id:_id},{$set:req.body},(err,data)=>{
+                    if(err){
+                        res.json({code:555,data:err})
+                    }else{
+                        res.json({code:200,data:data})
+                    }
+                })
+            }
         }
     })
+
 };
 exports.remove=(req,res)=>{
     User.remove({_id:req.params._id},(err,data)=>{

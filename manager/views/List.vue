@@ -90,7 +90,9 @@
                         }else{
                             let teamObj={_id:team._id,name:temp.value};
                             _this.$http.post('http://localhost:1234/team/update',teamObj).then((res) => {
-                                if(res.data.code==200){
+                                if(res.data.code==201){
+                                    alert('此部门已存在，不可重复添加！')
+                                }else if(res.data.code==200){
                                     _this.find();
                                     _this.findUsers(this.activeTeam);
                                 }
@@ -127,7 +129,9 @@
                         }else{
                             let teamObj={name:name};
                             this.$http.post('http://localhost:1234/team/insert',teamObj).then((res)=>{
-                                if(res.data.code==200){
+                                if(res.data.code==201){
+                                    alert('此部门已存在，不可重复添加！')
+                                }else if(res.data.code==200){
                                     document.getElementById('teamList').removeChild(document.getElementById('teamList').children[2]);
                                     this.find();
                                 }
@@ -185,7 +189,9 @@
                         if(value0&&value1&&value2){
                             let userObj={name:value0,email:value1,team:value2};
                             this.$http.post('http://localhost:1234/user/insert',userObj).then((res)=>{
-                                if(res.data.code==200){
+                                if(res.data.code==201){
+                                    alert('此邮箱已注册，不可重复注册！')
+                                }else if(res.data.code==200){
                                     document.getElementById('userTbody').deleteRow(0);
                                     this.findUsers(this.activeTeam);
                                 }
@@ -234,7 +240,9 @@
                         if (value0 && value1 && value2) {
                             let userObj = {_id: user._id, name: value0, email: value1, team: value2};
                             this.$http.post('http://localhost:1234/user/update', userObj).then((res)=> {
-                                if (res.data.code == 200) {
+                                if(res.data.code==201){
+                                    alert('此邮箱已注册，不可重复注册！')
+                                }else if (res.data.code == 200) {
                                     this.findUsers(this.activeTeam);
                                 }
                             }, (err)=> {

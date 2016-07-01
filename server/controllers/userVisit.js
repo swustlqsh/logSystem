@@ -17,9 +17,24 @@ exports.insert=(req,res)=>{
                 if(err){
                     res.json({code:555,data:err})
                 }else{
+                    console.log(data);
                     res.json({code:200,data:data})
                 }
             })
+        }
+    })
+};
+exports.findVisits=(req,res)=>{
+    UserVisit.find({user_id:req.params._id},(err,data)=>{
+        if(err){
+            res.json({code:555,data:err})
+        }else{
+            let arr=[];
+            _.each(data,(item)=>{
+                arr.push(item.visit_id);
+            });
+            console.log(arr);
+            res.json({code:200,data:arr})
         }
     })
 };

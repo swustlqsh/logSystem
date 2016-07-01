@@ -12,7 +12,9 @@ router
 	  .post('/user/insert',user.insert)
 	  .post('/user/update',user.update)
 	  .delete('/user/:_id',user.remove)
-	.post('/userVisit/insert',userVisit.insert)
+
+	  .post('/userVisit/insert',userVisit.insert)
+	  .get('/userVisit/findVisits/:_id',userVisit.findVisits)
 
 
 	  .post('/team/update',team.update)

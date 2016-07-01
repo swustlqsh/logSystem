@@ -1,6 +1,6 @@
 <template>
     <div id="teamList" class="list-group col-md-3 outBorder">
-        <button class="btn btn-info" @click="insert()" style="margin: 15px">添加部门</button>
+        <button class="btn btn-info margin15" @click="insert()">添加部门</button>
         <a id="111111111111111111111111" class="list-group-item inBorder bg-grey" @click="activeChange('111111111111111111111111')">
             <span @click="activeChange('111111111111111111111111')" class="hand">topxgun</span>
         </a>
@@ -10,7 +10,7 @@
             <span class="pull-right text-info hand" @click="update(team)">修改&nbsp;&nbsp;</span>
         </a>
     </div>
-    <div class="col-md-9" style="margin-top: 20px">
+    <div class="col-md-9 top20">
         <table id="userTable" class="table table-hover">
             <thead>
                 <tr>

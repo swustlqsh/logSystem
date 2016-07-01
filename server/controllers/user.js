@@ -3,6 +3,8 @@
  */
 'use strict';
 const User = require('../models/user');
+const Team = require('../models/team');
+const _=require('lodash');
 exports.findByTeam=(req,res)=>{
     let query={};
     if(req.params._id!='111111111111111111111111'){
@@ -16,6 +18,15 @@ exports.findByTeam=(req,res)=>{
             res.json({code:555,data:err})
         }else{
             res.json({code:200,data:users})
+        }
+    })
+};
+exports.findById=(req,res)=>{
+    User.findById(req.params._id,(err,user)=>{
+        if(err){
+            res.json({code:555,data:err})
+        }else{
+            res.json({code:200,data:user})
         }
     })
 };
@@ -68,6 +79,34 @@ exports.remove=(req,res)=>{
             res.json({code:555,data:err})
         }else{
             res.json({code:200,data:data})
+        }
+    })
+};
+exports.teamUser=(req,res)=>{
+    Team.find({},(err,teams)=>{
+        if(err){
+            res.json({code:555,data:err})
+        }else{
+            User.find({},(err,users)=>{
+                if(err){
+                    res.json({code:555,data:err})
+                }else{
+                    let arr=[];
+                    let userArr=[];
+                    _.each(teams,(team)=>{
+                        let obj={name:team.name,_id:team._id,items:[]};
+                        arr.push(obj);
+                    });
+                    _.each(users,(user)=>{
+                        let obj={name:user.name,_id:user._id,team:user.team};
+                        userArr.push(obj);
+                    });
+                    _.each(arr,(a)=>{
+                        a.items=_.filter(userArr,{team:a._id})
+                    });
+                    res.json({code:200,data:arr});
+                }
+            })
         }
     })
 };

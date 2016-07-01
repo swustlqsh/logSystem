@@ -4,7 +4,10 @@ const router = express.Router();
 const login = require('../controllers/site');
 const team = require('../controllers/team');
 const user = require('../controllers/user');
-router.get('/user/findByTeam/:_id',user.findByTeam)
+router
+	  .get('/user/findByTeam/:_id',user.findByTeam)
+	  .get('/user/findById/:_id',user.findById)
+	  .get('/user/teamUser',user.teamUser)
 	  .post('/user/insert',user.insert)
 	  .post('/user/update',user.update)
 	  .delete('/user/:_id',user.remove)

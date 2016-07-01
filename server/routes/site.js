@@ -4,6 +4,7 @@ const router = express.Router();
 const login = require('../controllers/site');
 const team = require('../controllers/team');
 const user = require('../controllers/user');
+const userVisit = require('../controllers/userVisit');
 router
 	  .get('/user/findByTeam/:_id',user.findByTeam)
 	  .get('/user/findById/:_id',user.findById)
@@ -11,6 +12,9 @@ router
 	  .post('/user/insert',user.insert)
 	  .post('/user/update',user.update)
 	  .delete('/user/:_id',user.remove)
+	.post('/userVisit/insert',userVisit.insert)
+
+
 	  .post('/team/update',team.update)
 	  .post('/team/insert',team.insert)
 	  .delete('/team/:_id',team.remove)

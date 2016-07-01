@@ -13,7 +13,7 @@ app.all('*',function(req,res,next){
 	res.set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
 	res.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type,Authen,Authorization');
 	res.header("X-Powered-By",'NB TopXGun');
-	if ('OPTIONS' == req.method) return res.send(200);
+	if ('OPTIONS' == req.method) return res.sendStatus(200);
 	next();
 });
 

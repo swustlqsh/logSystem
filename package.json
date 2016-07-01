@@ -33,6 +33,7 @@
     "mongoose": "^4.5.2",
     "morgan": "^1.7.0",
     "url-loader": "^0.5.7",
+    "vue-bootstrap-pagination": "^1.11.0",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.2.1",

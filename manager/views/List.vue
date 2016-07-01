@@ -37,6 +37,7 @@
                 </tr>
             </tbody>
         </table>
+        <!--<pagination :pagination="pagination" :callback="findUsers" :offset="3"></pagination>-->
     </div>
 </template>
 <script type="text/ecmascript-6">
@@ -51,6 +52,12 @@
                 users:[],
                 user:{},
                 activeTeam:'111111111111111111111111'
+                /*pagination: {
+                    total: 0, per_page: 12,
+                    from: 1, to: 0,
+                    current_page: 1
+                },
+                paginate:1*/
             }
         },
         filters:{
@@ -279,6 +286,9 @@
                     console.log(err);
                 })
             }
-        }
+        }/*,
+        components:{
+            pagination:require('vue-bootstrap-pagination')
+        }*/
     }
 </script>

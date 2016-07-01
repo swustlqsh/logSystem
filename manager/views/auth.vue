@@ -20,14 +20,18 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-info btn-sm  pull-right" @click="save">保存</button>
-        <button class="btn btn-info btn-sm  pull-right">取消</button>
+        <div class="pull-right">
+            <button class="btn btn-info btn-sm" @click="save">保存</button>
+            <button class="btn btn-info btn-sm" @click="cancel">取消</button>
+        </div>
+
     </div>
 </template>
 <script type="text/ecmascript-6">
     export default{
         ready(){
             this.find(this.$route.params.userId);
+            this.findVisits(this.$route.params.userId);
             this.findTeamUser();
         },
         data(){
@@ -38,6 +42,15 @@
             }
         },
         methods:{
+            findVisits(userId){
+                this.$http.get('http://localhost:1234/userVisit/findVisits/'+userId).then((res)=>{
+                    if(res.data.code==200){
+                        this.visitedUser=res.data.data;
+                    }
+                },(err)=>{
+                    console.log(err);
+                })
+            },
             find(userId){
                 this.$http.get('http://localhost:1234/user/findById/'+userId).then((res)=>{
                     if(res.data.code==200){
@@ -49,7 +62,6 @@
             },
             findTeamUser(){
                 this.$http.get('http://localhost:1234/user/teamUser/').then((res)=>{
-                    console.log(res.data);
                     if(res.data.code==200){
                         this.teamUsers=res.data.data;
                     }
@@ -58,15 +70,17 @@
                 })
             },
             save(){
-               let obj={user_id:this.user._id,visit_ids:this.visitedUser};
-                console.log(obj);
-                this.$http.post('http://localhost:1234/userVisit/insert/',obj,(res)=>{
+                let obj={user_id:this.user._id,visit_ids:this.visitedUser};
+                this.$http.post('http://localhost:1234/userVisit/insert/',obj).then((res)=>{
                     if(res.data.code==200){
                         alert('保存成功！')
                     }
                 },(err)=>{
                     console.log(err)
-                });
+                })
+            },
+            cancel(){
+                this.findVisits(this.$route.params.userId)
             }
         }
     }

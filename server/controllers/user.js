@@ -7,10 +7,10 @@ const Team = require('../models/team');
 const _=require('lodash');
 exports.findByTeam=(req,res)=>{
     let query={};
-    if(req.params._id!='111111111111111111111111'){
-        query.team=req.params._id
+    if(req.body.teamId!='111111111111111111111111'){
+        query.team=req.body.teamId;
     }
-    User.find(query)
+    /*User.find(query)
     .sort({create_date:-1})
     .populate('team')
     .exec((err,users)=>{
@@ -19,7 +19,25 @@ exports.findByTeam=(req,res)=>{
         }else{
             res.json({code:200,data:users})
         }
-    })
+    })*/
+
+    User.find(query)
+        .sort({create_date: -1})
+        .populate('team')
+        .limit(req.body.pagnite)
+        .skip(req.body.pagnite * (req.body.page - 1))
+        .exec((err, users)=> {
+            if (err) {
+                res.json({code: 555, data: err})
+            } else {
+                User.count(query, (err, sum)=> {
+                    res.json({code: 200, data: users, total: sum})
+                })
+            }
+        });
+    
+    
+    
 };
 exports.findById=(req,res)=>{
     User.findById(req.params._id,(err,user)=>{

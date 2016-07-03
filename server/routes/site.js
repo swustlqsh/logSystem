@@ -6,7 +6,7 @@ const team = require('../controllers/team');
 const user = require('../controllers/user');
 const userVisit = require('../controllers/userVisit');
 router
-	  .get('/user/findByTeam/:_id',user.findByTeam)
+	  .post('/user/findByTeam/',user.findByTeam)
 	  .get('/user/findById/:_id',user.findById)
 	  .get('/user/teamUser',user.teamUser)
 	  .post('/user/insert',user.insert)

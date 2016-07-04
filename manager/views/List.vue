@@ -11,7 +11,7 @@
             <span class="pull-right text-info hand" @click="update(team)">修改&nbsp;&nbsp;</span>
         </a>
     </div>
-    <div class="col-md-9 top20">
+    <div class="col-lg-offset-3 col-md-9 top20">
         <table id="userTable" class="table table-hover">
             <thead>
             <tr>

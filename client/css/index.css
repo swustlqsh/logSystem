@@ -71,7 +71,6 @@ li>img{
     -ms-transform: scale(1.2) rotate(360deg);
     -o-transform: scale(1.2) rotate(360deg);
     transform: scale(1.2) rotate(360deg);
-    transition: all ease-in-out 0.5s;
 }
 .log-options-active{
     border:1px solid rgba(0,120,219,1);

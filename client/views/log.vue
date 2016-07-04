@@ -17,6 +17,26 @@
             </div>
             <div class="user-option">
                 <img src="../imgs/header.png" class="js-user" width="80px" alt="头像">
+                <div class="header-menu" style="display: none">
+                    <div class="user">
+                        <img src="../imgs/header.png" width="100" height="100" alt="头像">
+                        <span>刘娟娟</span>
+                    </div>
+                    <ul class="menu">
+                        <li>
+                            <div class="menu-item">
+                                <img src="../imgs/setting.png" alt="设置">
+                                <span>设置</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="menu-item">
+                                <img src="../imgs/logout.png" alt="退出登录">
+                                <span>退出登录</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -24,7 +44,11 @@
 <script type="text/ecmascript-6">
     export default{
         ready(){
-
+            var $=require('jquery');
+            var $headerMenu = $('.header-menu');
+            $('.user-option').hover(function () {
+                $headerMenu.toggle();
+            });
         },
         data(){
             return{

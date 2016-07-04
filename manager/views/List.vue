@@ -78,7 +78,6 @@
         },
         methods: {
             find(){
-
                 this.$http.get('http://localhost:1234/team/find').then((res) => {
                     if (res.data.code == 200) {
                         this.teams = res.data.data;

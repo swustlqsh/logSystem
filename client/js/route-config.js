@@ -4,7 +4,7 @@
 export function configRouter(router){
     router.map({
         '*':{
-            component:require('../views/log.vue')
+            component:require('../views/app.vue')
         },
         '/log':{
             component:require('../views/log.vue')

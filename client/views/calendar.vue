@@ -1,4 +1,8 @@
 <template>
+    calender
+</template>
+<!--
+<template>
     <div class="panel">
         <div class="panel-left">
             <div class="panel-left-options">
@@ -57,4 +61,4 @@ export default{
         }
     }
 }
-</script>
+</script>-->

@@ -50,7 +50,11 @@ a{
     line-height: 75px;
     background-color: #fff;
     border-radius: 50%;
+    margin-left: 10px;
     transition: all ease-in-out 0.5s;
+}
+li>img{
+    margin: 12px auto;
 }
 .log-options .my-datepicker{
     width: 0;
@@ -68,4 +72,20 @@ a{
     -o-transform: scale(1.2) rotate(360deg);
     transform: scale(1.2) rotate(360deg);
     transition: all ease-in-out 0.5s;
+}
+.user-option{
+    width: 118px;
+    height: 104px;
+    border-top: 2px solid #e4e4e4;
+    position: absolute;
+    bottom: 0;
+}
+.user-option>img{
+    position: absolute;
+    cursor: pointer;
+    top:45%;
+    left: 25%;
+    width: 60px;
+    height: 60px;
+    margin: -22px auto;
 }

@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    height: 100%;
+}
+ul,ol,li{
+    list-style: none;
+}
+a{
+    display: block;
+    text-decoration: none;
+}
+.clearfix{
+
+}
+.clearfix:after{
+
+}
+.panel{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+.panel-left{
+    width: 480px;
+    height: 100%;
+}
+.panel-left-options{
+    width: 118px;
+    height: inherit;
+    background: #f8f8f8;
+    border-right: 1px solid #e4e4e4;
+    border-left: 1px solid #e4e4e4;
+    float: left;
+    position: relative;
+}
+.log-options{
+    width: 80px;
+    margin: 0 auto;
+}
+.log-options li{
+    display: block;
+    cursor: pointer;
+    margin-top: 100px;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 75px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: all ease-in-out 0.5s;
+}
+.log-options .my-datepicker{
+    width: 0;
+    height: 0;
+    border:none;
+    float: right;
+    margin-top: -20px;
+    margin-left: 50px;
+}
+.log-options li:hover{
+    border:1px solid rgba(0,120,219,1);
+    -webkit-transform: scale(1.2) rotate(360deg);
+    -moz-transform: scale(1.2) rotate(360deg);
+    -ms-transform: scale(1.2) rotate(360deg);
+    -o-transform: scale(1.2) rotate(360deg);
+    transform: scale(1.2) rotate(360deg);
+    transition: all ease-in-out 0.5s;
+}

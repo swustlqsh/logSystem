@@ -1,5 +1,5 @@
 <template>
-    <div id="teamList" class="list-group col-md-3 outBorder">
+    <div id="teamList" class="list-group col-md-3 border leftBorder">
         <button class="btn btn-info margin15" @click="insert()">添加部门</button>
         <a id="111111111111111111111111" class="list-group-item inBorder bg-grey"
            @click="activeChange('111111111111111111111111')">

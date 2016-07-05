@@ -4,19 +4,19 @@
 export function configRouter(router){
     router.map({
         '*':{
-            component:require('../views/app.vue')
+            component:require('../views/App.vue')
         },
         '/log':{
-            component:require('../views/log.vue')
+            component:require('../views/Log.vue')
         },
         '/calendar':{
-            component:require('../views/calendar.vue')
+            component:require('../views/Calendar.vue')
         },
         '/search':{
-            component:require('../views/search.vue')
+            component:require('../views/Search.vue')
         },
         '/list':{
-            component:require('../views/user.vue')
+            component:require('../views/User.vue')
         }
     })
 }

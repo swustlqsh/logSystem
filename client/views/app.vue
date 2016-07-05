@@ -6,9 +6,9 @@
                     <li id="add" class="js-add" @click="changeRouter('add')">
                         <img src="../imgs/add.png" alt="添加">
                     </li>
-                    <li id="search" class="js-search" @click="changeRouter('search')">
+                    <!--<li id="search" class="js-search" @click="changeRouter('search')">
                         <img src="../imgs/search.png" alt="搜索">
-                    </li>
+                    </li>-->
                     <li id="calendar" class="js-calender" @click="changeRouter('calendar')">
                         <img src="../imgs/calendar.png" alt="日历">
                     </li>

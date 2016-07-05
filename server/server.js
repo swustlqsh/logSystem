@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const session=require('express-session');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/workbook');
 
@@ -15,7 +16,13 @@ app.all('*', function(req, res, next) {
 	res.header("Content-Type", "application/json;charset=utf-8");
 	next();
 });*/
-
+app.use(session({
+	secret:'12345',
+	name:'test',
+	resave:false,
+	saveUninitialized: true,
+	cookie: {maxAge: 80000 }
+}))
 
 
 app.all('*',function(req,res,next){

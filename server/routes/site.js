@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 
 const login = require('../controllers/site');
@@ -7,6 +8,7 @@ const user = require('../controllers/user');
 const userVisit = require('../controllers/userVisit');
 router
 	  .post('/user/findByTeam/',user.findByTeam)
+	  .get('/user/123',user.test)
 	  .get('/user/clientLogin/:email',user.clientLogin)
 	  .get('/user/findById/:_id',user.findById)
 	  .get('/user/teamUser',user.teamUser)

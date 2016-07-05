@@ -118,7 +118,7 @@ exports.teamUser=(req,res)=>{
 };
 //以下是client
 exports.clientLogin=(req,res)=>{
-    User.find({email:req.body.email},function(err,data){
+    User.find({email:req.params.email},function(err,data){
         if(err){
             res.json(err);
         }else{

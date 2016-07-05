@@ -9,14 +9,21 @@
         },
         data(){
             return {
-                user:{email:''}
+                user:{email:'1003512331@qq.com'}
             }
         },
         methods: {
             login(){
-                this.$http.get('http://localhost:1234/user/clientAuth/'+this.user.email).then(function (res) {
-                    this.$router.go('index')
-                }, function () {
+//                this.$router.go('index');
+
+                this.$http.get('http://localhost:1234/user/clientLogin/'+this.user.email).then(function (res) {
+                    if(res.data.code==200){
+                        this.$router.go('index')
+                    }else if(res.data.code==203){
+                        alert('此用户未注册');
+                    }
+
+                }, function (err) {
                     console.log(err);
                 });
             }

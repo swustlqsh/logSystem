@@ -1,11 +1,11 @@
 <template>
     <div class="add-log">
         <div class="add-title">
-            <div class="add-date" style="float: left">
-                123
+            <div class="add-date">
+               2016/09/08
             </div>
-            <div class="add-bts" >
-                456
+            <div class="add-bts">
+                <button>完成</button>
             </div>
         </div>
         <div class="editor">

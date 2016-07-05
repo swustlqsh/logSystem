@@ -5,6 +5,8 @@
 const User = require('../models/user');
 const Team = require('../models/team');
 const _=require('lodash');
+
+//以下是manager
 exports.findByTeam=(req,res)=>{
     let query={};
     if(req.body.teamId!='111111111111111111111111'){
@@ -111,6 +113,20 @@ exports.teamUser=(req,res)=>{
                     res.json({code:200,data:arr});
                 }
             })
+        }
+    })
+};
+//以下是client
+exports.clientLogin=(req,res)=>{
+    User.find({email:req.body.email},function(err,data){
+        if(err){
+            res.json(err);
+        }else{
+            if(data.length>0){
+                res.json({code:200,data:data[0]})
+            }else{
+                res.json({code:203,data:'不存在此用户'})
+            }
         }
     })
 };

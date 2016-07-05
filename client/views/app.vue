@@ -3,13 +3,13 @@
         <div class="panel-left">
             <div class="panel-left-options">
                 <ul class="log-options">
-                    <li id="add" class="js-add" @click="changeRouter('add')">
+                    <li id="add" class="js-add" @click="changeRouter('/index/add')">
                         <img src="../imgs/add.png" alt="添加">
                     </li>
                     <!--<li id="search" class="js-search" @click="changeRouter('search')">
                         <img src="../imgs/search.png" alt="搜索">
                     </li>-->
-                    <li id="calendar" class="js-calender" @click="changeRouter('calendar')">
+                    <li id="calendar" class="js-calender">
                         <img src="../imgs/calendar.png" alt="日历">
                     </li>
                     <input type="button" class="my-datepicker datepicker-here">

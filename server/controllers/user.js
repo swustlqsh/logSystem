@@ -10,17 +10,6 @@ exports.findByTeam=(req,res)=>{
     if(req.body.teamId!='111111111111111111111111'){
         query.team=req.body.teamId;
     }
-    /*User.find(query)
-    .sort({create_date:-1})
-    .populate('team')
-    .exec((err,users)=>{
-        if(err){
-            res.json({code:555,data:err})
-        }else{
-            res.json({code:200,data:users})
-        }
-    })*/
-
     User.find(query)
         .sort({create_date: -1})
         .populate('team')
@@ -35,9 +24,6 @@ exports.findByTeam=(req,res)=>{
                 })
             }
         });
-    
-    
-    
 };
 exports.findById=(req,res)=>{
     User.findById(req.params._id,(err,user)=>{

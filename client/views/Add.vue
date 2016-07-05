@@ -11,7 +11,6 @@
         <div class="editor">
             <textarea id="editor" placeholder="请输入日志内容。。。" autofocus></textarea>
         </div>
-
     </div>
 </template>
 <script type="text/ecmascript-6">

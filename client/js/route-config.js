@@ -4,22 +4,23 @@
 export function configRouter(router){
     router.map({
         '*':{
-            component:require('../views/Add.vue')
+            component:require('../views/Login.vue')
         },
-        '/log':{
-            component:require('../views/Log.vue')
+        '/login':{
+            component:require('../views/Login.vue')
         },
-        '/add':{
-            component:require('../views/Add.vue')
-        },
-        '/calendar':{
-            component:require('../views/Calendar.vue')
-        },
-        '/search':{
-            component:require('../views/Search.vue')
-        },
-        '/list':{
-            component:require('../views/User.vue')
+        'index':{
+            component:require('../views/App.vue'),
+            subRoutes:{
+                '/': {
+                    component: {
+                        template: '<p>Default sub view for Foo</p>'
+                    }
+                },
+                'add':{
+                    component:require('../views/Add.vue')
+                }
+            }
         }
     })
 }

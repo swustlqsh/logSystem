@@ -3,7 +3,8 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    "client":['./client/js/main.js'],
+    "client":['./client/js/main.js'
+    ],
     "manager":['./manager/js/main.js']
   },
   output: {

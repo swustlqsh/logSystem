@@ -234,7 +234,7 @@ li>img{
     word-break: break-all;
 }
 .panel-main{
-    width:100%;
+    width:90%;
     box-sizing:border-box;
     border-left:118px solid transparent;
     margin-left: 118px;
@@ -244,10 +244,10 @@ li>img{
     z-index: 1;
 }
 .panel-main .add-log{
-   margin: 150px 0 0 200px;
+   margin: 150px 200px 0 150px;
 }
 .editor{
-    width: 60%;
+    margin: 0;
 }
 .simditor{
     border-top:1px solid #eeeeee;

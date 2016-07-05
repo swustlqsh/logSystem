@@ -1,7 +1,12 @@
 <template>
     <div class="add-log">
-        <div class="title">
-
+        <div class="add-title">
+            <div class="add-date" style="float: left">
+                123
+            </div>
+            <div class="add-bts" >
+                456
+            </div>
         </div>
         <div class="editor">
             <textarea id="editor" placeholder="请输入日志内容。。。" autofocus></textarea>

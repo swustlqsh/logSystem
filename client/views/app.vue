@@ -39,9 +39,11 @@
                 </div>
             </div>
         </div>
-        <!--<div class="panel-main">
-            <router-view></router-view>
-        </div>-->
+        <div class="panel-main">
+            <div class="panel-main-content">
+                <router-view></router-view>
+            </div>
+        </div>
     </div>
 </template>
 <script type="text/ecmascript-6">
@@ -60,7 +62,6 @@
         },
         methods:{
             changeRouter(route){
-                console.log(this.$route);
                 this.$router.go(route)
             }
         }

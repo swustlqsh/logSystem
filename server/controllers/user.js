@@ -123,8 +123,8 @@ exports.clientLogin=(req,res)=>{
             res.json(err);
         }else{
             if(data.length>0){
-                req.session.userId=data[0]._id;
-                console.log(req.session.userId);
+                req.session.user=data[0];
+                console.log(req.session);
                 res.json({code:200,data:data[0]})
             }else{
                 res.json({code:203,data:'不存在此用户'})

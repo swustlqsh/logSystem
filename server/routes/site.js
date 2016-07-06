@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const login = require('../controllers/site');
+const dairy = require('../controllers/dairy');
 const team = require('../controllers/team');
 const user = require('../controllers/user');
 const userVisit = require('../controllers/userVisit');
@@ -15,6 +16,8 @@ router
 	  .post('/user/insert',user.insert)
 	  .post('/user/update',user.update)
 	  .delete('/user/:_id',user.remove)
+
+	  .post('/dairy/insert',dairy.insert)
 
 	  .post('/userVisit/insert',userVisit.insert)
 	  .get('/userVisit/findVisits/:_id',userVisit.findVisits)

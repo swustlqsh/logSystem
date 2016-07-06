@@ -5,11 +5,11 @@
                2016/09/08
             </div>
             <div class="add-bts">
-                <button>完成</button>
+                <button @click="insert()">完成</button>
             </div>
         </div>
         <div class="editor">
-            <textarea id="editor" placeholder="请输入日志内容。。。" autofocus></textarea>
+            <textarea id="editor" placeholder="请输入日志内容。。。" autofocus v-model="log.content"></textarea>
         </div>
     </div>
 </template>
@@ -20,20 +20,26 @@
                 textarea: $('#editor')
                 //optional options
             });
-            this.$http.get('http://localhost:1234/user/123/').then(function (res) {
-               /* if(res.data.code==200){
-                    this.$router.go('index')
-                }else if(res.data.code==203){
-                    alert('此用户未注册');
-                }*/
-
-            }, function (err) {
-                console.log(err);
-            });
         },
         data(){
             return{
-
+                log:{content:''}
+            }
+        },
+        methods:{
+            insert(){
+                let obj=this.log;
+                console.log(obj);
+                this.$http.post('http://localhost:1234/dairy/insert/',obj).then(function (res) {
+                     if(res.data.code==200){
+                         console.log(res.data.data);
+                      this.$router.go('index')
+                     }else if(res.data.code==203){
+                     alert('此用户未注册');
+                     }
+                }, function (err) {
+                    console.log(err);
+                });
             }
         }
     }

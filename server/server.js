@@ -11,7 +11,7 @@ const Site = require('./routes/site');
 app.use(cookieParser());
 app.use(session({
 	secret:'12345',
-	name:'test',
+	name:'user',
 	resave:false,
 	saveUninitialized: false
 }));

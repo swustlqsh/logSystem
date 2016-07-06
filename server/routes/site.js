@@ -11,6 +11,7 @@ router
 	  .post('/user/findByTeam/',user.findByTeam)
 	  .get('/user/123',user.test)
 	  .get('/user/clientLogin/:email',user.clientLogin)
+	  .get('/user/clientLogout/',user.clientLogout)
 	  .get('/user/findById/:_id',user.findById)
 	  .get('/user/teamUser',user.teamUser)
 	  .post('/user/insert',user.insert)

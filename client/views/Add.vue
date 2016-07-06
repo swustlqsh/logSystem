@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="editor">
-            <textarea id="editor" placeholder="请输入日志内容。。。" autofocus v-model="log.content"></textarea>
+            <textarea id="editor" placeholder="请输入日志内容。。。" autofocus></textarea>
         </div>
     </div>
 </template>
@@ -23,13 +23,13 @@
         },
         data(){
             return{
-                log:{content:''}
+
             }
         },
         methods:{
             insert(){
-                let obj=this.log;
-                console.log(obj);
+                let content=document.getElementById('editor').value;
+                let obj={content:content};
                 this.$http.post('http://localhost:1234/dairy/insert/',obj).then(function (res) {
                      if(res.data.code==200){
                          console.log(res.data.data);

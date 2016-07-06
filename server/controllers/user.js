@@ -124,13 +124,28 @@ exports.clientLogin=(req,res)=>{
         }else{
             if(data.length>0){
                 req.session.user=data[0];
-                console.log(req.session);
                 res.json({code:200,data:data[0]})
             }else{
                 res.json({code:203,data:'不存在此用户'})
             }
         }
     })
+};
+exports.clientLogout=(req,res)=>{
+    req.session=null;
+    res.json({code:200,data:'ok'});
+   /* User.find({email:req.params.email},function(err,data){
+        if(err){
+            res.json(err);
+        }else{
+            if(data.length>0){
+                req.session.user=data[0];
+                res.json({code:200,data:data[0]})
+            }else{
+                res.json({code:203,data:'不存在此用户'})
+            }
+        }
+    })*/
 };
 exports.test=(req,res)=>{
    console.log(req);

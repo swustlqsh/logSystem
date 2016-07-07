@@ -16,6 +16,7 @@
     "express-session": "^1.14.0",
     "jquery": "^2.2.4",
     "lodash": "^4.13.1",
+    "serve-favicon": "^2.3.0",
     "vue": "^1.0.25",
     "vue-resource": "^0.9.1",
     "vue-router": "^0.7.13"

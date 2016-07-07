@@ -30,7 +30,7 @@
                              </div>
                          </li>-->
                         <li>
-                            <div class="menu-item">
+                            <div class="menu-item" @click="logout()">
                                 <img src="../imgs/logout.png" alt="退出登录">
                                 <span>退出登录</span>
                             </div>
@@ -62,6 +62,11 @@
         methods:{
             changeRouter(route){
                 this.$router.go(route)
+            },
+            logout(){
+                this.$http.get('http://localhost:1234/user/clientLogout/').then(function(res){
+                    console.log(res);
+                })
             }
         }
     }

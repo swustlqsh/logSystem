@@ -13,9 +13,7 @@ export function configRouter(router){
             component:require('../views/App.vue'),
             subRoutes:{
                 '/': {
-                    component: {
-                        template: '<p>Default sub view for Foo</p>'
-                    }
+                    component:require('../views/List.vue')
                 },
                 'add':{
                     component:require('../views/Add.vue')

@@ -19,8 +19,7 @@
 //                this.$router.go('index');
                 this.$http.get('http://localhost:1234/user/clientLogin/'+this.user.email).then(function (res) {
                     if(res.data.code==200){
-                        this.$router.go('index')
-                        console.log(res.data);
+                        this.$router.go('index');
                     }else if(res.data.code==203){
                         alert('此用户未注册');
                     }

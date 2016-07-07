@@ -5,7 +5,8 @@
 const Dairy = require('../models/dairy');
 //client
 exports.insert=(req,res)=>{
-    console.log(req.session);
+    console.log(req.sessionID);
+    console.log(req);
     console.log(req.body);
 
 };

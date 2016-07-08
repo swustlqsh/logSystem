@@ -6,9 +6,6 @@
                     <li id="add" class="js-add" @click="changeRouter('/index/add')">
                         <img src="../imgs/add.png" alt="添加">
                     </li>
-                    <!--<li id="search" class="js-search" @click="changeRouter('search')">
-                        <img src="../imgs/search.png" alt="搜索">
-                    </li>-->
                     <li id="calendar" class="js-calender">
                         <img src="../imgs/calendar.png" alt="日历">
                     </li>
@@ -23,12 +20,6 @@
                         <span>刘娟娟</span>
                     </div>
                     <ul class="menu">
-                        <!-- <li>
-                             <div class="menu-item">
-                                 <img src="../imgs/setting.png" alt="设置">
-                                 <span>设置</span>
-                             </div>
-                         </li>-->
                         <li>
                             <div class="menu-item" @click="logout()">
                                 <img src="../imgs/logout.png" alt="退出登录">
@@ -40,9 +31,7 @@
             </div>
         </div>
         <div class="panel-main">
-            <div class="panel-main-content">
-                <router-view></router-view>
-            </div>
+            <router-view></router-view>
         </div>
     </div>
 </template>

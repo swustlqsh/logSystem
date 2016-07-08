@@ -4,19 +4,29 @@
 export function configRouter(router){
     router.map({
         '*':{
-            component:require('../views/Login.vue')
+            component:resolve=> {
+                require(['../views/Login.vue'], resolve);
+            }
         },
         '/login':{
-            component:require('../views/Login.vue')
+            component:resolve=>{
+                require(['../views/Login.vue'],resolve);
+            }
         },
         'index':{
-            component:require('../views/App.vue'),
+            component:resolve=>{
+                require(['../views/App.vue'],resolve);
+            },
             subRoutes:{
                 '/': {
-                    component:require('../views/List.vue')
+                    component:resolve=>{
+                        require(['../views/List.vue'],resolve);
+                    }
                 },
                 'add':{
-                    component:require('../views/Add.vue')
+                    component:resolve=>{
+                        require(['../views/Add.vue'],resolve);
+                    }
                 }
             }
         }

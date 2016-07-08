@@ -5,7 +5,6 @@
 const Dairy = require('../models/dairy');
 //client
 exports.insert=(req,res)=>{
-    console.log(req.body);
     let dairyObj=new Dairy(req.body);
     dairyObj.save((err,data)=>{
         if(err){

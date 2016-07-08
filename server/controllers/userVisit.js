@@ -33,7 +33,6 @@ exports.findVisits=(req,res)=>{
             _.each(data,(item)=>{
                 arr.push(item.visit_id);
             });
-            console.log(arr);
             res.json({code:200,data:arr})
         }
     })

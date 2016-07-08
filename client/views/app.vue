@@ -6,7 +6,7 @@
                     <li id="add" class="js-add" @click="changeRouter('/index/add')">
                         <img src="../imgs/add.png" alt="添加">
                     </li>
-                    <li id="calendar" class="js-calender">
+                    <li id="calendar" class="js-calendar">
                         <img src="../imgs/calendar.png" alt="日历">
                     </li>
                     <input type="button" class="my-datepicker datepicker-here">
@@ -42,6 +42,22 @@
             $('.user-option').hover(function () {
                 $headerMenu.toggle();
             });
+            var $showDatePicker = $('.datepicker-here');
+            $showDatePicker.datepicker({
+                position: "right bottom",
+                language: "zh_CN",
+                onSelect: function (fd, date, obj) {
+                    console.log(fd, date, obj)
+                    obj.hide();
+                }
+            });
+            $('.js-calendar').on('click', function () {
+                if (!$showDatePicker.isFocus)
+                    $showDatePicker.trigger('focus');
+            });
+            $('#datepickers-container').on('mouseleave',function(){
+                $showDatePicker.trigger('blur');
+            })
         },
         data(){
             return{

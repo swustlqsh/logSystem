@@ -147,7 +147,6 @@
         color: #C3C3C3;
         position: relative;
     }
-
     .logo span {
         display: block;
         margin: 20px;
@@ -160,12 +159,10 @@
         font-family: "黑体", serif;
         font-size: 15px;
     }
-
     .log-item:hover {
         background-color: #0078DB;
         color: #fff;
     }
-
     .log-item .item-header {
         margin-left: 17px;
         margin-top: 14px;
@@ -199,12 +196,12 @@
         border-radius: 2em;
     }
     .list-right{
-        height: 100%;
         float: left;
         position: absolute;
         margin-left: 357px;
         top:30px;
         left: 25px;
         right: 25px;
+        bottom: 0;
     }
 </style>

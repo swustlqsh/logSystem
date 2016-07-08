@@ -137,7 +137,18 @@ li>img{
     text-align: center;
     margin-left: 20px;
 }
-
+.input-group-addon {
+    background-color: transparent;
+    border: none;
+}
+.log-options .my-datepicker {
+    width: 0;
+    height: 0;
+    border: none;
+    float: right;
+    margin-top: -20px;
+    margin-left: 50px;
+}
 
 .panel-main{
     width:100%;

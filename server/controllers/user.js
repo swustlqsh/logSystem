@@ -120,11 +120,16 @@ exports.teamUser=(req,res)=>{
 exports.clientLogin=(req,res)=>{
     User.find({email:req.params.email},function(err,data){
         if(err){
-            res.json(err);
+            res.json({code:555,data:err})
         }else{
             if(data.length>0){
-                req.session.user=data[0];
-                res.json({code:200,data:data[0],session:req.session})
+                User.update({_id:data[0]._id},{$set:{last_login:new Date()}},(err,user)=>{
+                    if(err){
+                        res.json({code:555,data:err})
+                    }else{
+                        res.json({code:200,data:data[0]})
+                    }
+                })
             }else{
                 res.json({code:203,data:'不存在此用户'})
             }

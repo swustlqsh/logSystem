@@ -6,7 +6,7 @@
                    2016/09/08
                 </div>
                 <div class="add-bts">
-                    <button @click="insert()">完成</button>
+                    <button @click="insert()">完成1</button>
                 </div>
             </div>
             <div class="editor">
@@ -16,6 +16,7 @@
     </div>
 </template>
 <script type="text/ecmascript-6">
+    import dairyService from '../services/dairy'
     export default{
         ready(){
             var editor = new Simditor({
@@ -29,18 +30,8 @@
         },
         methods:{
             insert(){
-                let content=document.getElementById('editor').value;
-                let obj={content:content};
-                this.$http.post('http://localhost:1234/dairy/insert/',obj).then(function (res) {
-                     if(res.data.code==200){
-                         console.log(res.data.data);
-                      this.$router.go('index')
-                     }else if(res.data.code==203){
-                     alert('此用户未注册');
-                     }
-                }, function (err) {
-                    console.log(err);
-                });
+                let dairyObj={user_id:this.$route.params.userId,content:document.getElementById('editor').value};
+                dairyService.insert(this,dairyObj);
             }
         }
     }

@@ -13,7 +13,8 @@ export function configRouter(router){
                 require(['../views/Login.vue'],resolve);
             }
         },
-        'index':{
+        'user/:userId':{
+            name:'user',
             component:resolve=>{
                 require(['../views/App.vue'],resolve);
             },
@@ -23,9 +24,9 @@ export function configRouter(router){
                         require(['../views/List.vue'],resolve);
                     }
                 },
-                'add':{
+                'dairy':{
                     component:resolve=>{
-                        require(['../views/Add.vue'],resolve);
+                        require(['../views/Dairy.vue'],resolve);
                     }
                 }
             }

@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/workbook');
 
 const Site = require('./routes/site');
-app.use(favicon(__dirname+'/img/txg.ico'));
+// app.use(favicon(__dirname+'/img/txg.ico'));
 app.use(cookieParser());
 app.use(session({
 	secret:'12345',

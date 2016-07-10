@@ -10,11 +10,17 @@ export function configRouter(router){
             component:require('../views/login.vue')
         },
         '/list':{
-            component:require('../views/List.vue')
-        },
-        '/auth/:userId':{
-            name:'auth',
-            component:require('../views/Auth.vue')
+            component:require('../views/index.vue'),
+            subRoutes:{
+                '/':{
+                    component:require('../views/List.vue')
+                },
+                '/auth/:userId':{
+                    name:'auth',
+                    component:require('../views/Auth.vue')
+                }
+            }
         }
+        
     })
 }

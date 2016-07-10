@@ -11,5 +11,5 @@ const router=new VueRouter({hashbang:false});
 
 configRouter(router);
 
-router.start(app,'body');
+router.start(app,'#app');
 

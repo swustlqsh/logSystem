@@ -1,13 +1,13 @@
 <template>
-    <div class="center">
-        <form class="form-horizontal  col-md-offset-4 col-md-4">
-            <div class="form-group col-md-10">
-                <input type="email" class="form-control" id="email" placeholder="email">
-            </div>
-            <a type="submit" class="btn btn-default" @click="login()">登录</a>
-        </form>
+    <div class="screen">
+       <div class="center">
+           用户名：<input type="text">
+           密码：<input type="password">
+           <button>登录</button>
+       </div>
     </div>
 </template>
+
 
 <script type="text/ecmascript-6">
     export default {
@@ -24,3 +24,12 @@
         }
     }
 </script>
+<style>
+    .screen{
+        height: 100%;
+        width: 100%;
+    }
+    .center{
+       margin: auto;
+    }
+</style>

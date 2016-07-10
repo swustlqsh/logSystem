@@ -38,3 +38,7 @@
 .margin15{
     margin: 15px;
 }
+#app{
+    height: 100%;
+    width: 100%;
+}

@@ -1,23 +1,28 @@
 <template>
-    <div class="screen">
-       <div class="center">
-           用户名：<input type="text">
-           密码：<input type="password">
-           <button>登录</button>
-       </div>
+    <div class="container">
+        <form class="form-signin">
+            <h2 class="form-signin-heading">请登录</h2>
+            <label for="inputEmail" class="sr-only">email</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="email" required autofocus>
+            <br/>
+            <label for="inputPassword" class="sr-only">密码</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        </form>
     </div>
 </template>
 
 
 <script type="text/ecmascript-6">
     export default {
-        ready(){},
+        ready(){
+        },
         data () {
             return {
                 msg: '日志管理'
             }
         },
-        methods:{
+        methods: {
             login(){
                 this.$router.go('list')
             }
@@ -25,11 +30,43 @@
     }
 </script>
 <style>
-    .screen{
+    .container {
         height: 100%;
         width: 100%;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
-    .center{
-       margin: auto;
+    .form-signin {
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    .form-signin .form-signin-heading,
+    .form-signin .checkbox {
+        margin-bottom: 10px;
+    }
+    .form-signin .checkbox {
+        font-weight: normal;
+    }
+    .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+    }
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
     }
 </style>

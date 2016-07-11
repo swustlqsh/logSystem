@@ -6,7 +6,7 @@
                    2016/09/08
                 </div>
                 <div class="add-bts">
-                    <button @click="insert()">完成1</button>
+                    <button @click="insert()">完成</button>
                 </div>
             </div>
             <div class="editor">
@@ -22,11 +22,6 @@
             var editor = new Simditor({
                 textarea: $('#editor')
             });
-        },
-        data(){
-            return{
-
-            }
         },
         methods:{
             insert(){

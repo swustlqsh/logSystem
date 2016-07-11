@@ -1,3 +1,5 @@
+<!--
+
 <template>
     <div class="list-group col-md-3 outBorder">
         <a href="#" class="list-group-item inBorder" v-for="user in users">{{user.name?user.name:'匿名用户'}}</a>
@@ -29,4 +31,4 @@
             }
         }
     }
-</script>
+</script>-->

@@ -33,3 +33,6 @@
         }
     }
 </script>
+<style>
+    @import "../css/dairy.css";
+</style>

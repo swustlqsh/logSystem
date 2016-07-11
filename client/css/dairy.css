@@ -1,0 +1,33 @@
+/*右边内容样式*/
+.add-title .add-date{
+    margin-bottom: 15px;
+    font-size: 28px;
+    color: #0078DB;
+    display:inline
+}
+.add-title .add-bts{
+    text-align: right;
+    margin-top: -45px;
+}
+.add-title .add-bts button{
+    border: none;
+    border-radius: 10px;
+    background-color: #0078DB;
+    color: white;
+    height: 40px;
+    width: 80px;
+    font-size: 18px;
+}
+/*富文本编辑器样式*/
+.editor{
+    margin-top: 15px;
+}
+.simditor{
+    border-top:1px solid #eeeeee;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+.panel-main .add-log{
+    margin: 80px 100px 0 50px;
+}

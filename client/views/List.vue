@@ -17,11 +17,11 @@
             </ul>
         </div>
      <div class="list-right">
-            <div class="checked-title">
-                <div class="checked-date">
+            <div class="add-title" >
+                <div class="add-date">
                     {{dairy.create_date|date}}
                 </div>
-                <div class="checked-bts" v-show="dairy.create_date>this.zeroTime">
+                <div class="add-bts" v-show="dairy.create_date>this.zeroTime">
                     <button @click="update()">完成</button>
                 </div>
             </div>

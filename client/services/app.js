@@ -6,9 +6,9 @@ export  default{
     insertDairy(app,userId,cb){
             app.$http.get(API_URL+'/dairy/isInsert/'+userId).then((res)=>{
                 if(res.data.code==201){
-                    alert('今日日志已经存在，请直接在此页修改！')
+                    cb();
                 }else if(res.data.code==200){
-                    cb(res.data.data);
+
                 }else if(res.data.code==555){
                     console.log(res.data.data);
                 }

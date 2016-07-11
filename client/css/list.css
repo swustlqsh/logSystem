@@ -104,4 +104,10 @@
 .editor{
     margin-top: 15px;
 }
+.simditor{
+    border-top:1px solid #eeeeee;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
 

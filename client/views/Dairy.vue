@@ -17,10 +17,17 @@
 </template>
 <script type="text/ecmascript-6">
     import dairyService from '../services/dairy'
+    import appService from '../services/app'
     export default{
         ready(){
             var editor = new Simditor({
                 textarea: $('#editor')
+            });
+            //为了避免主机上的时间不准，获取服务器的时间（今日零点）来判断是否有今天的日志
+            appService.insertDairy(this,this.$route.params.userId,()=>{
+                confirm('今天你已经写了日志，不可以重复写，直接修改就可以喽~');
+                $('.js-add').removeClass('log-options-active');
+                this.$router.go({name:'user',params:{userId:this.$route.params.userId}});
             });
         },
         methods:{

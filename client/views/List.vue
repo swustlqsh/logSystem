@@ -17,8 +17,11 @@
             </ul>
         </div>
      <div class="list-right">
-            <div class="add-title" >
-                <div class="add-date">
+            <div class="add-title">
+                <div class="add-date" v-if="list.length<1">
+                    暂无日志
+                </div>
+                <div class="add-date" v-if="list.length>0">
                     {{dairy.create_date|date}}
                 </div>
                 <div class="add-bts" v-show="dairy.create_date>this.zeroTime">

@@ -3,9 +3,9 @@
             <div class="logo">
                 <span>TopxGun工作日志 <sub>Beta</sub></span>
             </div>
-            <ul>
+            <ul id="list">
                 <li v-for="item in list">
-                    <div class="log-item">
+                    <div class="log-item" @click="lookInfo($index)">
                         <div class="item-header">
                             <span class="text-date">{{item.create_date|date}}</span>
                         </div>
@@ -19,7 +19,7 @@
      <div class="list-right">
             <div class="add-title">
                 <div class="add-date">
-                    2016/09/08
+                    {{dairy.create_date|date}}
                 </div>
                 <div class="add-bts">
                     <button @click="insert()">完成</button>
@@ -31,17 +31,17 @@
         </div>
 </template>
 <script type="text/ecmascript-6">
-    import listService from '../services/list'
     export default{
         ready(){
-            var editor = new Simditor({
+            this.editor = new Simditor({
                 textarea: $('#editor')
             });
             this.findByUser();
         },
         data(){
             return{
-                list:[]
+                list:[],
+                dairy:{create_date:'',content:''}
             }
         },
         filters: {
@@ -55,7 +55,21 @@
         },
         methods:{
             findByUser(){
-                listService.findByUser(this,this.$route.path.split('/')[2]);
+                this.$http.get('http://localhost:1234/dairy/findByUser/'+this.$route.path.split('/')[2])
+                        .then((res)=>{
+                            this.list=res.data.data;
+                            this.lookInfo(0);
+                        },(err)=>{
+                            console.log(err);
+                        });
+            },
+            lookInfo(index){
+                $('#list li').children('div').removeClass('list-active');
+                $('#list li').eq(index).children('div').addClass('list-active');
+                if(this.list&&this.list.length>0){
+                    this.dairy=this.list[index];
+                    this.editor.setValue(this.list[index].content);
+                }
             }
         }
     }

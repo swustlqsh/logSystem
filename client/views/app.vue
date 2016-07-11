@@ -3,7 +3,7 @@
         <div class="panel-left">
             <div class="panel-left-options">
                 <ul class="log-options">
-                    <li id="add" class="js-add" @click="changeRouter(`${$route.path}/dairy`)">
+                    <li  class="js-add" @click="insertDairy(`${$route.path}/dairy`)">
                         <img src="../imgs/add.png" alt="添加">
                     </li>
                     <li id="calendar" class="js-calendar">
@@ -36,6 +36,7 @@
     </div>
 </template>
 <script type="text/ecmascript-6">
+    import appService from '../services/app';
     export default{
         ready(){
             var $headerMenu = $('.header-menu');
@@ -65,8 +66,8 @@
             }
         },
         methods:{
-            changeRouter(route){
-                this.$router.go(route)
+            insertDairy(){
+               appService.insertDairy(this,this.$route.params.userId);
             },
             logout(){
                 this.$http.get('http://localhost:1234/user/clientLogout/').then(function(res){

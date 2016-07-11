@@ -67,7 +67,19 @@
         },
         methods:{
             insertDairy(){
-               appService.insertDairy(this,this.$route.params.userId);
+                if($('.js-add').hasClass('log-options-active')){
+                    $('.js-add').removeClass('log-options-active');
+                    this.$router.go({name:'user',params:{userId:this.$route.params.userId}});
+                }else{
+                    appService.insertDairy(this,this.$route.params.userId,(res)=>{
+                        if(res.data.code==201){
+                            alert('今日日志已经存在，请直接在此页修改！')
+                        }else if(res.data.code==200){
+                            $('.js-add').addClass('log-options-active');
+                            this.$router.go(this.$route.path+'/dairy');
+                        }
+                    });
+                }
             },
             logout(){
                 this.$http.get('http://localhost:1234/user/clientLogout/').then(function(res){

@@ -9,5 +9,12 @@ export default {
         },(err)=>{
             console.log(err);
         });
+    },
+    getZeroTime(app,cb){
+        app.$http.get(API_URL+'/site/zeroTime/').then((res)=>{
+            cb(res);
+        },(err)=>{
+            console.log(err);
+        });
     }
 }

@@ -17,11 +17,11 @@
             </ul>
         </div>
      <div class="list-right">
-            <div class="add-title">
-                <div class="add-date">
+            <div class="checked-title">
+                <div class="checked-date">
                     {{dairy.create_date|date}}
                 </div>
-                <div class="add-bts">
+                <div class="checked-bts" v-show="dairy.create_date>this.zeroTime">
                     <button @click="insert()">完成</button>
                 </div>
             </div>
@@ -34,18 +34,25 @@
     import listService from '../services/list';
     export default{
         ready(){
+            //富文本编辑器初始化
             this.editor = new Simditor({
                 textarea: $('#editor')
             });
+            //列表内容初始化
             this.findByUser();
+            //为了避免主机上的时间不准，获取服务器的时间（今日零点）来判断是否是今天的日志，如果是，可修改，显示‘完成’按钮
+            listService.getZeroTime(this,(res)=>{
+                this.zeroTime=res.data.data;
+            })
         },
         data(){
             return{
-                list:[],
-                dairy:{create_date:'',content:''}
+                list:[],//列表数组
+                dairy:{create_date:'',content:''}//查看的某条日志内容
             }
         },
         filters: {
+            // 2016/07/10 格式的时间
             date(date){
                 let d = new Date(date);
                 let year = d.getFullYear();
@@ -55,12 +62,15 @@
             }
         },
         methods:{
+            //根据userID获取日志列表
             findByUser(){
                 listService.findByUser(this,this.$route.path.split('/')[2],(res)=>{
                     this.list=res.data.data;
                     this.lookInfo(0);
                 })
             },
+            //当查看某一项的时候背景颜色改变将查看的日志内容赋值给this.dairy
+            // index--列表的第几项
             lookInfo(index){
                 $('#list li').children('div').removeClass('list-active');
                 $('#list li').eq(index).children('div').addClass('list-active');

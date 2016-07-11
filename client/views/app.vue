@@ -3,7 +3,7 @@
         <div class="panel-left">
             <div class="panel-left-options">
                 <ul class="log-options">
-                    <li  class="js-add" @click="insertDairy(`${$route.path}/dairy`)">
+                    <li class="js-add" @click="insertDairy(`${$route.path}/dairy`)">
                         <img src="../imgs/add.png" alt="添加">
                     </li>
                     <li id="calendar" class="js-calendar">

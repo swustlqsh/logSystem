@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
+const site = require('../controllers/site');
 const dairy = require('../controllers/dairy');
 const team = require('../controllers/team');
 const user = require('../controllers/user');
@@ -27,5 +28,8 @@ router
 	  .post('/team/update',team.update)
 	  .post('/team/insert',team.insert)
 	  .delete('/team/:_id',team.remove)
-	  .get('/team/find',team.find);
-module.exports = router; 
+	  .get('/team/find',team.find)
+
+	  //client
+	  .get('/site/zeroTime',site.zeroTime);
+module.exports = router;

@@ -175,14 +175,13 @@ li>img{
     margin: 20px;
 }
 .checked-title .checked-date{
-    margin-bottom: 10px;
     font-size: 28px;
     color: #0078DB;
     display:inline
 }
 .checked-title .checked-bts{
     text-align: right;
-    margin-top: -45px;
+    margin-top: -40px;
 }
 .checked-title .checked-bts button{
     border: none;

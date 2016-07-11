@@ -16,5 +16,12 @@ export default {
         },(err)=>{
             console.log(err);
         });
+    },
+    updateDairy(app,obj,cb){
+        app.$http.post(API_URL+'/dairy/update/',obj).then((res)=>{
+            cb(res);
+        },(err)=>{
+            console.log(err);
+        })
     }
 }

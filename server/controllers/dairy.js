@@ -44,3 +44,13 @@ exports.isInsert=(req,res)=>{
         }
     })
 };
+exports.update=(req,res)=>{
+    let obj={content:req.body.content,last_update:new Date()};
+    Dairy.update({_id:req.body._id},{$set:obj},function(err,data){
+        if(err){
+            res.json({code:555,data:err});
+        }else{
+            res.json({code:200,data:data});
+        }
+    })
+};

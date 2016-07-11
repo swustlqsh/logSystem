@@ -20,6 +20,7 @@ router
 	  .get('/dairy/isInsert/:userId',dairy.isInsert)
 	  .get('/dairy/findByUser/:userId',dairy.findByUser)
 	  .post('/dairy/insert',dairy.insert)
+	  .post('/dairy/update',dairy.update)
 
 	  .post('/userVisit/insert',userVisit.insert)
 	  .get('/userVisit/findVisits/:_id',userVisit.findVisits)

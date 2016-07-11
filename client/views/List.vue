@@ -22,7 +22,7 @@
                     {{dairy.create_date|date}}
                 </div>
                 <div class="checked-bts" v-show="dairy.create_date>this.zeroTime">
-                    <button @click="insert()">完成</button>
+                    <button @click="update()">完成</button>
                 </div>
             </div>
             <div class="editor">
@@ -78,6 +78,15 @@
                     this.dairy=this.list[index];
                     this.editor.setValue(this.list[index].content);
                 }
+            },
+            //更新今天的日志。
+            update(){
+                let obj={_id:this.dairy._id,content:this.editor.getValue()};
+                listService.updateDairy(this,obj,(res)=>{
+                    if(res.data.code==200){
+                        this.findByUser();
+                    }
+                })
             }
         }
     }

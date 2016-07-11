@@ -31,6 +31,7 @@
         </div>
 </template>
 <script type="text/ecmascript-6">
+    import listService from '../services/list';
     export default{
         ready(){
             this.editor = new Simditor({
@@ -55,13 +56,10 @@
         },
         methods:{
             findByUser(){
-                this.$http.get('http://localhost:1234/dairy/findByUser/'+this.$route.path.split('/')[2])
-                        .then((res)=>{
-                            this.list=res.data.data;
-                            this.lookInfo(0);
-                        },(err)=>{
-                            console.log(err);
-                        });
+                listService.findByUser(this,this.$route.path.split('/')[2],(res)=>{
+                    this.list=res.data.data;
+                    this.lookInfo(0);
+                })
             },
             lookInfo(index){
                 $('#list li').children('div').removeClass('list-active');

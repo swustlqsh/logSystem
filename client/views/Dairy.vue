@@ -26,7 +26,13 @@
         methods:{
             insert(){
                 let dairyObj={user_id:this.$route.params.userId,content:document.getElementById('editor').value};
-                dairyService.insert(this,dairyObj);
+                dairyService.insert(this,dairyObj,(res)=>{
+                    if(res.data.code==200){
+                        this.$router.go({name:'user',params:{userId:this.$route.params.userId}});
+                    }else if(res.data.code==203){
+                        alert('此用户未注册');
+                    }
+                });
             }
         }
     }

@@ -16,7 +16,13 @@
         },
         methods: {
             login(){
-                loginService.login(this,this.user.email);
+                loginService.login(this,this.user.email,(res)=>{
+                    if(res.data.code==200){
+                        this.$router.go({name:'user',params:{userId:res.data.data._id}});
+                    }else if(res.data.code==203){
+                        alert('此用户未注册');
+                    }
+                });
             }
         }
     }

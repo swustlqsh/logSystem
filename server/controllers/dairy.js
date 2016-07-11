@@ -8,7 +8,7 @@ exports.insert=(req,res)=>{
     let dairyObj=new Dairy(req.body);
     dairyObj.save((err,data)=>{
         if(err){
-            res.json({code:500,data:err});
+            res.json({code:555,data:err});
         }else{
             res.json({code:200,data:data});
         }

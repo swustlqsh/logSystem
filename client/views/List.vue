@@ -41,8 +41,8 @@
             //列表内容初始化
             this.findByUser();
             //为了避免主机上的时间不准，获取服务器的时间（今日零点）来判断是否是今天的日志，如果是，可修改，显示‘完成’按钮
-            listService.getZeroTime(this,(res)=>{
-                this.zeroTime=res.data.data;
+            listService.getZeroTime(this,(data)=>{
+                this.zeroTime=data;
             })
         },
         data(){
@@ -64,8 +64,8 @@
         methods:{
             //根据userID获取日志列表
             findByUser(){
-                listService.findByUser(this,this.$route.path.split('/')[2],(res)=>{
-                    this.list=res.data.data;
+                listService.findByUser(this,this.$route.path.split('/')[2],(data)=>{
+                    this.list=data;
                     this.lookInfo(0);
                 })
             },
@@ -82,10 +82,8 @@
             //更新今天的日志。
             update(){
                 let obj={_id:this.dairy._id,content:this.editor.getValue()};
-                listService.updateDairy(this,obj,(res)=>{
-                    if(res.data.code==200){
-                        this.findByUser();
-                    }
+                listService.updateDairy(this,obj,()=>{
+                    this.findByUser();
                 })
             }
         }

@@ -15,6 +15,8 @@ router
 	  .post('/user/update',user.update)
 	  .delete('/user/:_id',user.remove)
 
+	  //查看今日日志是否存在，若存在则不可以再次添加，只可修改。
+	  .get('/dairy/isInsert/:userId',dairy.isInsert)
 	  .get('/dairy/findByUser/:userId',dairy.findByUser)
 	  .post('/dairy/insert',dairy.insert)
 

@@ -26,3 +26,21 @@ exports.findByUser=(req,res)=>{
         }
     })
 };
+exports.isInsert=(req,res)=>{
+    var today = new Date();
+    today.setHours(0);
+    today.setMinutes(0);
+    today.setSeconds(0);
+    today.setMilliseconds(0);
+    Dairy.count({user_id:req.params.userId,create_date:{$gt:today}},(err,data)=>{
+        if(err){
+            res.json({code:555,data:err})
+        }else{
+            if(data>0){
+                res.json({code:201,data:data})
+            }else{
+                res.json({code:200,data:data})
+            }
+        }
+    })
+};

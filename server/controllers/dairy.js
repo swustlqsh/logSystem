@@ -15,3 +15,14 @@ exports.insert=(req,res)=>{
     })
 
 };
+exports.findByUser=(req,res)=>{
+    Dairy.find({user_id:req.params.userId})
+    .sort({create_date:-1})
+    .exec((err,data)=>{
+        if(err){
+            res.json({code:555,data:err})
+        }else{
+            res.json({code:200,data:data})
+        }
+    })
+};

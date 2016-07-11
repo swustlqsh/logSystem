@@ -15,6 +15,7 @@ router
 	  .post('/user/update',user.update)
 	  .delete('/user/:_id',user.remove)
 
+	  .get('/dairy/findByUser/:userId',dairy.findByUser)
 	  .post('/dairy/insert',dairy.insert)
 
 	  .post('/userVisit/insert',userVisit.insert)

@@ -4,99 +4,13 @@
                 <span>TopxGun工作日志 <sub>Beta</sub></span>
             </div>
             <ul>
-                <li>
+                <li v-for="item in list">
                     <div class="log-item">
                         <div class="item-header">
-                            <span class="text-date">16/07/07</span>
+                            <span class="text-date">{{item.create_date|date}}</span>
                         </div>
                         <div class="item-content">
-                            1、软件工程分为哪几个阶段？
-                            答：软件定义、可行性分析、需求分析、概要设计、详细设计、编码、软件测试、软件维护等。
-                            2、系统分为哪几个部分？
-                            答：本系统是C/S架构系统，分为两大部分：客户端（Android）和服务器端（J2EE）。两大部分分工明确，服务器端只是提供数据分析和处理，客户端负责展示服务器反馈的数据，并提供与用户交互的途径，两者通过HTTP协议相互连接，采用JSON作为数据传输格式。
-                            3、如何保证用户信息安全？
-                            答：系统采用MD5加密算法对用户密码进行加密。MD5是指消息摘要算法第五版，该加密算法具有以下特点：压缩性、容易计算、抗修改性、强抗碰撞。
-
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="log-item">
-                        <div class="item-header">
-                            <span class="text-date">16/07/07</span>
-                        </div>
-                        <div class="item-content">
-                            1、软件工程分为哪几个阶段？
-                            答：软件定义、可行性分析、需求分析、概要设计、详细设计、编码、软件测试、软件维护等。
-                            2、系统分为哪几个部分？
-                            答：本系统是C/S架构系统，分为两大部分：客户端（Android）和服务器端（J2EE）。两大部分分工明确，服务器端只是提供数据分析和处理，客户端负责展示服务器反馈的数据，并提供与用户交互的途径，两者通过HTTP协议相互连接，采用JSON作为数据传输格式。
-                            3、如何保证用户信息安全？
-                            答：系统采用MD5加密算法对用户密码进行加密。MD5是指消息摘要算法第五版，该加密算法具有以下特点：压缩性、容易计算、抗修改性、强抗碰撞。
-
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="log-item">
-                        <div class="item-header">
-                            <span class="text-date">16/07/07</span>
-                        </div>
-                        <div class="item-content">
-                            1、软件工程分为哪几个阶段？
-                            答：软件定义、可行性分析、需求分析、概要设计、详细设计、编码、软件测试、软件维护等。
-                            2、系统分为哪几个部分？
-                            答：本系统是C/S架构系统，分为两大部分：客户端（Android）和服务器端（J2EE）。两大部分分工明确，服务器端只是提供数据分析和处理，客户端负责展示服务器反馈的数据，并提供与用户交互的途径，两者通过HTTP协议相互连接，采用JSON作为数据传输格式。
-                            3、如何保证用户信息安全？
-                            答：系统采用MD5加密算法对用户密码进行加密。MD5是指消息摘要算法第五版，该加密算法具有以下特点：压缩性、容易计算、抗修改性、强抗碰撞。
-
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="log-item">
-                        <div class="item-header">
-                            <span class="text-date">16/07/07</span>
-                        </div>
-                        <div class="item-content">
-                            1、软件工程分为哪几个阶段？
-                            答：软件定义、可行性分析、需求分析、概要设计、详细设计、编码、软件测试、软件维护等。
-                            2、系统分为哪几个部分？
-                            答：本系统是C/S架构系统，分为两大部分：客户端（Android）和服务器端（J2EE）。两大部分分工明确，服务器端只是提供数据分析和处理，客户端负责展示服务器反馈的数据，并提供与用户交互的途径，两者通过HTTP协议相互连接，采用JSON作为数据传输格式。
-                            3、如何保证用户信息安全？
-                            答：系统采用MD5加密算法对用户密码进行加密。MD5是指消息摘要算法第五版，该加密算法具有以下特点：压缩性、容易计算、抗修改性、强抗碰撞。
-
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="log-item">
-                        <div class="item-header">
-                            <span class="text-date">16/07/07</span>
-                        </div>
-                        <div class="item-content">
-                            1、软件工程分为哪几个阶段？
-                            答：软件定义、可行性分析、需求分析、概要设计、详细设计、编码、软件测试、软件维护等。
-                            2、系统分为哪几个部分？
-                            答：本系统是C/S架构系统，分为两大部分：客户端（Android）和服务器端（J2EE）。两大部分分工明确，服务器端只是提供数据分析和处理，客户端负责展示服务器反馈的数据，并提供与用户交互的途径，两者通过HTTP协议相互连接，采用JSON作为数据传输格式。
-                            3、如何保证用户信息安全？
-                            答：系统采用MD5加密算法对用户密码进行加密。MD5是指消息摘要算法第五版，该加密算法具有以下特点：压缩性、容易计算、抗修改性、强抗碰撞。
-
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="log-item">
-                        <div class="item-header">
-                            <span class="text-date">16/07/07</span>
-                        </div>
-                        <div class="item-content">
-                            1、软件工程分为哪几个阶段？
-                            答：软件定义、可行性分析、需求分析、概要设计、详细设计、编码、软件测试、软件维护等。
-                            2、系统分为哪几个部分？
-                            答：本系统是C/S架构系统，分为两大部分：客户端（Android）和服务器端（J2EE）。两大部分分工明确，服务器端只是提供数据分析和处理，客户端负责展示服务器反馈的数据，并提供与用户交互的途径，两者通过HTTP协议相互连接，采用JSON作为数据传输格式。
-                            3、如何保证用户信息安全？
-                            答：系统采用MD5加密算法对用户密码进行加密。MD5是指消息摘要算法第五版，该加密算法具有以下特点：压缩性、容易计算、抗修改性、强抗碰撞。
-
+                        {{{item.content}}}
                         </div>
                     </div>
                 </li>
@@ -117,15 +31,32 @@
         </div>
 </template>
 <script type="text/ecmascript-6">
+    import listService from '../services/list'
     export default{
         ready(){
             var editor = new Simditor({
                 textarea: $('#editor')
             });
+            this.findByUser();
         },
         data(){
             return{
-
+                list:[]
+            }
+        },
+        filters: {
+            date(date){
+                let d = new Date(date);
+                let year = d.getFullYear();
+                let month = d.getMonth() > 8 ? d.getMonth() + 1 : '0' + (d.getMonth() + 1);
+                let da = d.getDate() > 9 ? d.getDate() : '0' + d.getDate();
+                return year + '/' + month + '/' + da;
+            }
+        },
+        methods:{
+            findByUser(){
+                console.log('123');
+                listService.findByUser(this,this.$route.path.split('/')[2]);
             }
         }
     }

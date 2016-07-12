@@ -55,11 +55,13 @@
                     obj.hide();
                 }
             });
-            $('.js-calendar').on('click', function () {
-                if (!$showDatePicker.isFocus)
+            $('.js-calendar').on('click',  () =>{
+                if (!$showDatePicker.isFocus){
+                    this.$router.go({name:'user',params:{userId:this.$route.params.userId}});
                     $showDatePicker.trigger('focus');
+                }
             });
-            $('#datepickers-container').on('mouseleave',function(){
+            $('#datepickers-container').on('mouseleave',()=>{
                 $showDatePicker.trigger('blur');
             });
             //富文本编辑器初始化

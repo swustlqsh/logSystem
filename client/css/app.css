@@ -114,11 +114,14 @@ li>img{
 }
 
 .header-menu .menu-item:hover {
-    background-color: #EAEAEA;
+    color: rgba(0,120,219,1);
 }
 
 .header-menu .menu-item img {
     float: left;
+}
+.logout{
+    margin-top: -3px
 }
 
 .header-menu .menu-item span {

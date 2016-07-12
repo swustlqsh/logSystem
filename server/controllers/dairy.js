@@ -13,7 +13,6 @@ exports.insert=(req,res)=>{
             res.json({code:200,data:data});
         }
     })
-
 };
 exports.findByUser=(req,res)=>{
     Dairy.find({user_id:req.params.userId})

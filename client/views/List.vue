@@ -37,6 +37,38 @@
     import listService from '../services/list';
     export default{
         ready(){
+            //日期选择器
+            var $showDatePicker = $('.datepicker-here');
+            $showDatePicker.datepicker({
+                position: "right bottom",
+                language: "zh_CN",
+                onSelect:  (fd, date, obj)=> {
+                    if(date){
+                        let dateObj={userId:this.$route.params.userId,selectDate:date};
+                        listService.findByDate(this,dateObj,(data)=>{
+                            this.list=data;
+                            setTimeout(()=>{
+                                this.lookInfo(0);
+                            },100);
+                        })
+                    }else{
+                        this.findByUser()
+                    }
+                    obj.hide();
+                }
+            });
+            $('.js-calendar').on('click',() =>{
+                if(this.$route.name=='dairy'){
+                    confirm('请在日志列表页面进行此操作^_^')
+                }else if(this.$route.name=='user'){
+                    if (!$showDatePicker.isFocus){
+                        $showDatePicker.trigger('focus');
+                    }
+                }
+            });
+            $('#datepickers-container').on('mouseleave',()=>{
+                $showDatePicker.trigger('blur');
+            });
             //富文本编辑器初始化
             this.editor = new Simditor({
                 textarea: $('#editor')
@@ -69,12 +101,16 @@
             findByUser(){
                 listService.findByUser(this,this.$route.path.split('/')[2],(data)=>{
                     this.list=data;
-                    this.lookInfo(0);
+                    setTimeout(()=>{
+                        this.lookInfo(0);
+                    },100);
                 })
             },
             //当查看某一项的时候背景颜色改变将查看的日志内容赋值给this.dairy
             // index--列表的第几项
             lookInfo(index){
+                console.log(index);
+                console.log($('#list li'));
                 $('#list li').children('div').removeClass('list-active');
                 $('#list li').eq(index).children('div').addClass('list-active');
                 if(this.list&&this.list.length>0){

@@ -18,7 +18,7 @@
             //登录
             login(){
                 loginService.login(this,this.user.email,(data)=>{
-                        this.$router.go({name:'user',params:{userId:data._id}});
+                     this.$router.go({name:'user',params:{userId:data._id}});
                 });
             }
         }

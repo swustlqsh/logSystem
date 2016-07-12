@@ -37,33 +37,6 @@
     import listService from '../services/list';
     export default{
         ready(){
-            //日期选择器
-            var $showDatePicker = $('.datepicker-here');
-            $showDatePicker.datepicker({
-                position: "right bottom",
-                language: "zh_CN",
-                onSelect:  (fd, date, obj)=> {
-                    if(date){
-                        let dateObj={userId:this.$route.params.userId,selectDate:date};
-                        listService.findByDate(this,dateObj,(data)=>{
-                            this.list=data;
-                            this.lookInfo(0);
-                        })
-                    }else{
-                        this.findByUser()
-                    }
-                    obj.hide();
-                }
-            });
-            $('.js-calendar').on('click',  () =>{
-                if (!$showDatePicker.isFocus){
-                    this.$router.go({name:'user',params:{userId:this.$route.params.userId}});
-                    $showDatePicker.trigger('focus');
-                }
-            });
-            $('#datepickers-container').on('mouseleave',()=>{
-                $showDatePicker.trigger('blur');
-            });
             //富文本编辑器初始化
             this.editor = new Simditor({
                 textarea: $('#editor')

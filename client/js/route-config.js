@@ -25,6 +25,7 @@ export function configRouter(router){
                     }
                 },
                 'dairy':{
+                    name:'dairy',
                     component:resolve=>{
                         require(['../views/Dairy.vue'],resolve);
                     }

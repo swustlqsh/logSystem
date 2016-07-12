@@ -42,22 +42,6 @@
             $('.user-option').hover(function () {
                 $headerMenu.toggle();
             });
-            var $showDatePicker = $('.datepicker-here');
-            $showDatePicker.datepicker({
-                position: "right bottom",
-                language: "zh_CN",
-                onSelect: function (fd, date, obj) {
-                    console.log(fd, date, obj)
-                    obj.hide();
-                }
-            });
-            $('.js-calendar').on('click', function () {
-                if (!$showDatePicker.isFocus)
-                    $showDatePicker.trigger('focus');
-            });
-            $('#datepickers-container').on('mouseleave',function(){
-                $showDatePicker.trigger('blur');
-            })
         },
         data(){
             return{

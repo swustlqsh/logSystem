@@ -21,6 +21,7 @@ router
 	  .get('/dairy/findByUser/:userId',dairy.findByUser)
 	  .post('/dairy/insert',dairy.insert)
 	  .post('/dairy/update',dairy.update)
+	  .post('/dairy/findByDate',dairy.findByDate)
 
 	  .post('/userVisit/insert',userVisit.insert)
 	  .get('/userVisit/findVisits/:_id',userVisit.findVisits)

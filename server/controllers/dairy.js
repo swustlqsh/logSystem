@@ -54,3 +54,17 @@ exports.update=(req,res)=>{
         }
     })
 };
+exports.findByDate=(req,res)=>{
+      let dateSeconds=new Date(req.body.selectDate).getTime()+24*60*60*1000;
+      Dairy
+        .find({user_id:req.body.userId,create_date:{$lte:new Date(dateSeconds)}})
+        .sort({create_date:-1})
+        .limit(10)
+        .exec((err,data)=>{
+            if(err){
+                res.json({code:555,data:err})
+            }else{
+                res.json({code:200,data:data});
+            }
+        })
+};

@@ -36,7 +36,6 @@
     </div>
 </template>
 <script type="text/ecmascript-6">
-    import appService from '../services/app';
     export default{
         ready(){
             var $headerMenu = $('.header-menu');
@@ -71,10 +70,8 @@
                     $('.js-add').removeClass('log-options-active');
                     this.$router.go({name:'user',params:{userId:this.$route.params.userId}});
                 }else{
-                    appService.insertDairy(this,this.$route.params.userId,()=>{
-                            $('.js-add').addClass('log-options-active');
-                            this.$router.go(this.$route.path+'/dairy');
-                    });
+                    $('.js-add').addClass('log-options-active');
+                    this.$router.go(this.$route.path+'/dairy');
                 }
             },
             logout(){

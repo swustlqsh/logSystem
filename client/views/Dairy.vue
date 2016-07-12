@@ -34,6 +34,7 @@
                 let dairyObj={user_id:this.$route.params.userId,content:document.getElementById('editor').value};
                 dairyService.insert(this,dairyObj,()=>{
                     this.$router.go({name:'user',params:{userId:this.$route.params.userId}});
+                    $('.js-add').removeClass('log-options-active');
                 });
             }
         }

@@ -47,9 +47,10 @@
                         let dateObj={userId:this.$route.params.userId,selectDate:date};
                         listService.findByDate(this,dateObj,(data)=>{
                             this.list=data;
+                            this.lookInfo(0);
                         })
                     }else{
-
+                        this.findByUser()
                     }
                     obj.hide();
                 }
@@ -104,6 +105,9 @@
                 if(this.list&&this.list.length>0){
                     this.dairy=this.list[index];
                     this.editor.setValue(this.list[index].content);
+                }else{
+                    this.dairy={create_date:'',content:''};
+                    this.editor.setValue('');
                 }
             },
             //更新今天的日志。

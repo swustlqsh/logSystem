@@ -19,6 +19,7 @@
     import dairyService from '../services/dairy'
     export default{
         ready(){
+            //富文本编辑器
             var editor = new Simditor({
                 textarea: $('#editor')
             });
@@ -30,6 +31,7 @@
             });
         },
         methods:{
+            //添加日志
             insert(){
                 let dairyObj={user_id:this.$route.params.userId,content:document.getElementById('editor').value};
                 dairyService.insert(this,dairyObj,()=>{

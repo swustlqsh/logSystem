@@ -86,16 +86,6 @@
                 dairy:{create_date:'',content:''}//查看的某条日志内容
             }
         },
-        filters: {
-            // 2016/07/10 格式的时间
-            date(date){
-                let d = new Date(date);
-                let year = d.getFullYear();
-                let month = d.getMonth() > 8 ? d.getMonth() + 1 : '0' + (d.getMonth() + 1);
-                let da = d.getDate() > 9 ? d.getDate() : '0' + d.getDate();
-                return year + '/' + month + '/' + da;
-            }
-        },
         methods:{
             //根据userID获取日志列表
             findByUser(){
@@ -109,8 +99,6 @@
             //当查看某一项的时候背景颜色改变将查看的日志内容赋值给this.dairy
             // index--列表的第几项
             lookInfo(index){
-                console.log(index);
-                console.log($('#list li'));
                 $('#list li').children('div').removeClass('list-active');
                 $('#list li').eq(index).children('div').addClass('list-active');
                 if(this.list&&this.list.length>0){

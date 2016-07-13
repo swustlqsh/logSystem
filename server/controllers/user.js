@@ -123,11 +123,11 @@ exports.managerLogin=function(req,res){
     if(req.body.email&&req.body.password){
         user.findOne({email:req.body.email},function(err,user){
             if(err){
-                res.json({code:555,info:err});
+                res.json({code:555,data:err});
             }else if(user){
                 bcrypt.compare(req.body.password,user.password,function(err,data){
                     if(err){
-                        res.json({code:555,info:err});
+                        res.json({code:555,data:err});
                     }else{
                         if(data){
                             var obj={_id:user._id};
@@ -140,13 +140,13 @@ exports.managerLogin=function(req,res){
                             t.create_date=new Date();
                             t.save(function(err,data){
                                 if(err){
-                                    res.json({code:555,info:err});
+                                    res.json({code:555,data:err});
                                 }else{
-                                    res.json({code:200,info:token})
+                                    res.json({code:200,data:token})
                                 }
                             })
                         }else{
-                            res.json({code:501,info:'账户密码不匹配'})
+                            res.json({code:501,data:'账户密码不匹配'})
                         }
                     }
                 })
@@ -161,18 +161,18 @@ exports.insert2=function(req,res){
     var userObj=new User(req.body);
     bcrypt.genSalt(10,function(err,salt){
         if(err){
-            res.json(err);
+            res.json({code:555,data:err});
         }else{
             bcrypt.hash('topxgun123',salt,null,function(err,hash){
                 if(err){
-                    res.json(err);
+                    res.json({code:555,data:err});
                 }else{
                     userObj.password=hash;
                     userObj.save(function(err,data){
                         if(err){
-                            res.json(err);
+                            res.json({code:555,data:err});
                         }else{
-                            res.json(data);
+                            res.json({code:555,data:data});
                         }
                     })
                 }

@@ -1,7 +1,7 @@
 /**
  * Created by 刘娟娟 on 2016/7/8.
  */
-import {API_URL} from '../config'
+import {API_URL} from '../../config'
 export default{
     //添加日志
     insert(app,dairyObj,cb){

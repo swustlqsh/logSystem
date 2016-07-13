@@ -3,11 +3,11 @@
         <form class="form-signin">
             <h2 class="form-signin-heading">请登录</h2>
             <label for="inputEmail" class="sr-only">email</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="email" required autofocus>
+            <input type="text" id="inputEmail" class="form-control"  required autofocus>
             <br/>
             <label for="inputPassword" class="sr-only">密码</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="password" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+            <input type="password" id="inputPassword" class="form-control"  required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" @click="login()">登录</button>
         </form>
     </div>
 </template>

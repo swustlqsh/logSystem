@@ -4,6 +4,7 @@
 export function configRouter(router){
     router.map({
         '/login':{
+            name:'login',
             component:require('../views/login.vue')
         },
         '/list':{

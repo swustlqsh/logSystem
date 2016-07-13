@@ -7,7 +7,7 @@
             <br/>
             <label for="inputPassword" class="sr-only">密码</label>
             <input type="password" id="inputPassword" class="form-control"  required v-model="user.password">
-            <button class="btn btn-lg btn-primary btn-block" type="submit" @click="login()">登录</button>
+            <button class="btn btn-lg btn-info btn-block" type="submit" @click="login()">登录</button>
         </form>
     </div>
 </template>

@@ -1,9 +1,6 @@
 <template>
     <div id="teamList" class="list-group col-md-3 border leftBorder">
         <button class="btn btn-info margin15" @click="insert()">添加部门</button>
-       <!-- <a id="111111111111111111111111" class="list-group-item inBorder bg-grey">
-            <span @click="activeChange('111111111111111111111111')" class="hand">topxgun</span>
-        </a>-->
         <a id='{{team._id}}' :class="[$index==0?defaultStyleActive:defaultStyle]" v-for="team in teams">
             <span @click="activeChange(team._id)" class="hand">{{team.name}}</span>
             <span class="pull-right text-info hand" @click="remove(team._id)">删除&nbsp;&nbsp;</span>

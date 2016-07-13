@@ -23,7 +23,7 @@
                         <li>
                             <div class="menu-item" @click="logout()">
                                 <img src="../imgs/logout.png" alt="退出登录">
-                                <span>退出登录</span>
+                                <span class="logout">退出登录</span>
                             </div>
                         </li>
                     </ul>
@@ -38,47 +38,14 @@
 <script type="text/ecmascript-6">
     export default{
         ready(){
+            //个人中心悬浮
             var $headerMenu = $('.header-menu');
             $('.user-option').hover(function () {
                 $headerMenu.toggle();
             });
-            //日期选择器
-            var $showDatePicker = $('.datepicker-here');
-            $showDatePicker.datepicker({
-                position: "right bottom",
-                language: "zh_CN",
-                onSelect:  (fd, date, obj)=> {
-                    if(date){
-                        let dateObj={userId:this.$route.params.userId,selectDate:date};
-                        listService.findByDate(this,dateObj,(data)=>{
-                            this.list=data;
-                            this.lookInfo(0);
-                        })
-                    }else{
-                        this.findByUser()
-                    }
-                    obj.hide();
-                }
-            });
-            $('.js-calendar').on('click',  () =>{
-                if(this.$route.name=='dairy'){
-                    confirm('请在日志列表页面进行此操作^_^')
-                }else if(this.$route.name=='user'){
-                    if (!$showDatePicker.isFocus){
-                        $showDatePicker.trigger('focus');
-                    }
-                }
-            });
-            $('#datepickers-container').on('mouseleave',()=>{
-                $showDatePicker.trigger('blur');
-            });
-        },
-        data(){
-            return{
-
-            }
         },
         methods:{
+            //点击加号效果转换及跳转
             insertDairy(){
                 if($('.js-add').hasClass('log-options-active')){
                     $('.js-add').removeClass('log-options-active');
@@ -88,10 +55,9 @@
                     this.$router.go(this.$route.path+'/dairy');
                 }
             },
+            //登出系统
             logout(){
-                this.$http.get('http://localhost:1234/user/clientLogout/').then(function(res){
-                    console.log(res);
-                })
+                this.$router.go({name:'login'});
             }
         }
     }

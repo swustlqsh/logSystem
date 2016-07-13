@@ -4,6 +4,8 @@
 'use strict';
 const User = require('../models/user');
 const Team = require('../models/team');
+const Token = require('../models/Token');
+const bcrypt = require('bcrypt-nodejs');
 const _=require('lodash');
 
 //以下是manager
@@ -116,6 +118,69 @@ exports.teamUser=(req,res)=>{
         }
     })
 };
+//登录
+exports.managerLogin=function(req,res){
+    if(req.body.email&&req.body.password){
+        user.findOne({email:req.body.email},function(err,user){
+            if(err){
+                res.json({code:555,info:err});
+            }else if(user){
+                bcrypt.compare(req.body.password,user.password,function(err,data){
+                    if(err){
+                        res.json({code:555,info:err});
+                    }else{
+                        if(data){
+                            var obj={_id:user._id};
+                            var token=jwt.encode({
+                                iss:obj
+                            },'topxgun');
+                            var t=new Token();
+                            t.user_id=user._id;
+                            t.token=token;
+                            t.create_date=new Date();
+                            t.save(function(err,data){
+                                if(err){
+                                    res.json({code:555,info:err});
+                                }else{
+                                    res.json({code:200,info:token})
+                                }
+                            })
+                        }else{
+                            res.json({code:501,info:'账户密码不匹配'})
+                        }
+                    }
+                })
+            }else{
+                res.json({code:404});
+            }
+        })
+    }
+};
+//注册，不公开
+exports.insert2=function(req,res){
+    var userObj=new user(req.body);
+    bcrypt.genSalt(10,function(err,salt){
+        if(err){
+            res.json(err);
+        }else{
+            bcrypt.hash('topxgun123',salt,null,function(err,hash){
+                if(err){
+                    res.json(err);
+                }else{
+                    userObj.password=hash;
+                    userObj.save(function(err,data){
+                        if(err){
+                            res.json(err);
+                        }else{
+                            res.json(data);
+                        }
+                    })
+                }
+            })
+        }
+    })
+};
+
 //以下是client
 exports.clientLogin=(req,res)=>{
     User.find({email:req.params.email},function(err,data){

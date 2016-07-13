@@ -15,10 +15,10 @@ export default{
         })
     },
 
-    findDairyByUser(app, userId, cb){
-        app.$http.get(API_URL + '/dairy/findByUser/' + userId).then((res)=> {
+    findDairyByUser(app, data, cb){
+        app.$http.post(API_URL + '/dairy/findByUser/' ,data).then((res)=> {
             if (res.data.code == 200) {
-                cb(res.data.data);
+                cb(res.data);
             } else if (res.data.code == 555) {
                 console.log(res.data.data)
             }

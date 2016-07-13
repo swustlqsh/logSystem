@@ -28,7 +28,7 @@
                 <td>{{user.name?user.name:'匿名用户'}}</td>
                 <td>{{user.email}}</td>
                 <td>{{(user.team&&user.team.name)?user.team.name:'未设置'}}</td>
-                <td v-if="user.last_login">{{user.last_login|date}}</td>
+                <td v-if="user.last_login">{{user.last_login|dateWithSecond}}</td>
                 <td v-if="!user.last_login">未登录</td>
                 <td>
                     <button class="btn btn-info btn-sm" @click="updateUser(user)">编辑</button>
@@ -39,7 +39,7 @@
             </tr>
             </tbody>
         </table>
-        <!--<pagination :pagination="pagination" :callback="findUsers(activeTeam)" :offset="1"></pagination>-->
+            <!--<pagination :pagination="pagination" :callback="findUsers(activeTeam)" :offset="1"></pagination>-->
     </div>
 </template>
 <script type="text/ecmascript-6">
@@ -61,18 +61,6 @@
                     last_page: 1
                 },
                 paginate: 1*/
-            }
-        },
-        filters: {
-            date(date){
-                let d = new Date(date);
-                let year = d.getFullYear();
-                let month = d.getMonth() > 8 ? d.getMonth() + 1 : '0' + (d.getMonth() + 1);
-                let da = d.getDate() > 9 ? d.getDate() : '0' + d.getDate();
-                let hour = d.getHours() > 9 ? d.getHours() : '0' + d.getHours();
-                let min = d.getMinutes() > 9 ? d.getMinutes() : '0' + d.getMinutes();
-                let sec = d.getSeconds() > 9 ? d.getSeconds() : '0' + d.getSeconds();
-                return year + '-' + month + '-' + da + ' ' + hour + ':' + min + ':' + sec;
             }
         },
         methods: {

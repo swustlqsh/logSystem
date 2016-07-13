@@ -67,3 +67,26 @@ exports.findByDate=(req,res)=>{
             }
         })
 };
+//manager
+exports.findDairyByUser=(req,res)=>{
+    let per_page=req.body.per_page;
+    let current_page=req.body.current_page;
+    let query={user_id:req.body.userId};
+    Dairy.find(query)
+    .sort({create_date:-1})
+    .skip(per_page*(current_page-1))
+    .limit(per_page)
+    .exec((err,data)=>{
+        if(err){
+            res.json({code:555,data:err})
+        }else{
+            Dairy.count(query,(err,sum)=>{
+                if(err){
+                    res.json({code:555,data:err})
+                }else{
+                    res.json({code:200,data:data,sum:sum})
+                }
+            })
+        }
+    })
+};

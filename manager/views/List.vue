@@ -118,7 +118,7 @@
                         document.getElementById('teamList').appendChild(newA);
                     }
                     document.getElementById('insertCancel').addEventListener('click', ()=> {
-                        document.getElementById('teamList').removeChild(document.getElementById('teamList').children[2]);
+                        document.getElementById('teamList').removeChild(document.getElementById('teamList').children[1]);
                         this.find();
                     });
                     document.getElementById('insertConfirm').addEventListener('click', ()=> {
@@ -128,7 +128,7 @@
                         } else {
                             let teamObj = {name: name};
                             listService.insertTeam(this,teamObj,(data)=>{
-                                document.getElementById('teamList').removeChild(document.getElementById('teamList').children[2]);
+                                document.getElementById('teamList').removeChild(document.getElementById('teamList').children[1]);
                                 this.find();
                             })
                         }
@@ -252,9 +252,11 @@
                 }
             },
             removeUser(userId){
-                listService.removeUser(this,userId,(data)=>{
-                    this.findUsers(this.activeTeam);
-                })
+                if(confirm('确认删除？')){
+                    listService.removeUser(this,userId,(data)=>{
+                        this.findUsers(this.activeTeam);
+                    })
+                }
             }
         },
         components: {

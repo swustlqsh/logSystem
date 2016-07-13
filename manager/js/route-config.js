@@ -15,6 +15,10 @@ export function configRouter(router){
                 '/auth/:userId':{
                     name:'auth',
                     component:require('../views/Auth.vue')
+                },
+                '/dairy/:userId':{
+                    name:'dairy',
+                    component:require('../views/Dairy.vue')
                 }
             }
         }

@@ -29,6 +29,7 @@ router
     .delete('/team/:_id', tokenParser.parseToken, team.remove)
     .get('/team/find', tokenParser.parseToken, team.find)
 
+    .get('/dairy/findByUser/:userId',tokenParser.parseToken, dairy.findByUser)
     //client
     .get('/user/clientLogin/:email', user.clientLogin)
     .get('/site/zeroTime', site.zeroTime)

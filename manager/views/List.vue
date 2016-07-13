@@ -32,7 +32,7 @@
                 <td v-if="!user.last_login">未登录</td>
                 <td>
                     <button class="btn btn-info btn-sm" @click="updateUser(user)">编辑</button>
-                    <button class="btn btn-info btn-sm">查看日志</button>
+                    <a class="btn btn-info btn-sm" v-link="{name:'dairy',params:{userId:user._id}}">查看日志</a>
                     <a class="btn btn-info btn-sm" v-link="{name:'auth',params:{userId:user._id}}">访问日志权限</a>
                     <button class="btn btn-danger btn-sm" @click="removeUser(user._id)">删除</button>
                 </td>

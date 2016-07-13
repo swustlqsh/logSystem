@@ -39,7 +39,11 @@
             </tr>
             </tbody>
         </table>
-            <pagination :pagination="pagination" :callback="findUsers" :offset="6"></pagination>
+        <div v-if="this.pagination.last_page>1">
+            <div class="pull-right">
+                <pagination :pagination="pagination" :callback="findUsers" :offset="8"></pagination>
+            </div>
+        </div>
     </div>
 </template>
 <script type="text/ecmascript-6">
@@ -56,7 +60,7 @@
                 user: {},
                 activeTeam: '111111111111111111111111',
                 pagination: {
-                    total: 0, per_page: 15,
+                    total: 0, per_page: 50,
                     from: 0, to: 1,
                     current_page: 1,
                     last_page: 1
@@ -147,7 +151,6 @@
                     }else{
                         this.pagination.last_page=1;
                     }
-                    this.pagination.last_page = (this.pagination.total % this.pagination.per_page) == 0 ? (this.pagination.total / this.pagination.per_page):(this.pagination.total / this.pagination.per_page)+1
                 })
             },
             insertUser(){

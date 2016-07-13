@@ -28,6 +28,7 @@
     </div>
 </template>
 <script type="text/ecmascript-6">
+    import authService from '../services/auth'
     export default{
         ready(){
             this.find(this.$route.params.userId);
@@ -43,41 +44,23 @@
         },
         methods:{
             findVisits(userId){
-                this.$http.get('http://localhost:1234/userVisit/findVisits/'+userId).then((res)=>{
-                    if(res.data.code==200){
-                        this.visitedUser=res.data.data;
-                    }
-                },(err)=>{
-                    console.log(err);
+                authService.findVisits(this,userId,(data)=>{
+                    this.visitedUser=data;
                 })
             },
             find(userId){
-                this.$http.get('http://localhost:1234/user/findById/'+userId).then((res)=>{
-                    if(res.data.code==200){
-                        this.user=res.data.data;
-                    }
-                },(err)=>{
-                    console.log(err);
+                authService.find(this,userId,(data)=>{
+                    this.user=data;
                 })
             },
             findTeamUser(){
-                this.$http.get('http://localhost:1234/user/teamUser/').then((res)=>{
-                    if(res.data.code==200){
-                        this.teamUsers=res.data.data;
-                    }
-                },(err)=>{
-                    console.log(err);
+                authService.findTeamUser(this,(data)=>{
+                    this.teamUsers=data;
                 })
             },
             save(){
                 let obj={user_id:this.user._id,visit_ids:this.visitedUser};
-                this.$http.post('http://localhost:1234/userVisit/insert/',obj).then((res)=>{
-                    if(res.data.code==200){
-                        alert('保存成功！')
-                    }
-                },(err)=>{
-                    console.log(err)
-                })
+                authService.save(this,obj);
             },
             cancel(){
                 this.findVisits(this.$route.params.userId)

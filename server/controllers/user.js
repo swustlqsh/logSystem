@@ -6,6 +6,7 @@ const User = require('../models/user');
 const Team = require('../models/team');
 const Token = require('../models/Token');
 const bcrypt = require('bcrypt-nodejs');
+const jwt = require('jwt-simple');
 const _=require('lodash');
 
 //以下是manager
@@ -121,7 +122,7 @@ exports.teamUser=(req,res)=>{
 //登录
 exports.managerLogin=function(req,res){
     if(req.body.email&&req.body.password){
-        user.findOne({email:req.body.email},function(err,user){
+        User.findOne({email:req.body.email},function(err,user){
             if(err){
                 res.json({code:555,data:err});
             }else if(user){

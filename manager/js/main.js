@@ -5,7 +5,7 @@ import {configRouter} from './route-config'
 
 Vue.use(VueResource);
 Vue.use(VueRouter);
-
+Vue.http.headers.common['Authorization'] = sessionStorage.getItem('user');
 const app=Vue.extend({});
 const router=new VueRouter({hashbang:false});
 

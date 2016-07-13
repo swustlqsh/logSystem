@@ -3,10 +3,10 @@
         <form class="form-signin">
             <h2 class="form-signin-heading">请登录</h2>
             <label for="inputEmail" class="sr-only">email</label>
-            <input type="text" id="inputEmail" class="form-control"  required autofocus>
+            <input type="text" id="inputEmail" class="form-control" required autofocus v-model="user.email">
             <br/>
             <label for="inputPassword" class="sr-only">密码</label>
-            <input type="password" id="inputPassword" class="form-control"  required>
+            <input type="password" id="inputPassword" class="form-control"  required v-model="user.password">
             <button class="btn btn-lg btn-primary btn-block" type="submit" @click="login()">登录</button>
         </form>
     </div>
@@ -14,17 +14,21 @@
 
 
 <script type="text/ecmascript-6">
+    import loginService from '../services/login'
     export default {
         ready(){
         },
         data () {
             return {
-                msg: '日志管理'
+                user: {email:'',password:''}
             }
         },
         methods: {
             login(){
-                this.$router.go('list')
+                loginService.login(this,this.user,(data)=>{
+                    sessionStorage.setItem('user',data);
+                    this.$router.go('list')
+                })
             }
         }
     }

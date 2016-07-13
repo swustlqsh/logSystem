@@ -28,5 +28,14 @@ export default{
         },(err)=>{
             console.log(err);
         })
+    },
+    getNowTime(app,cb){
+        app.$http.get(API_URL+'/dairy/getNowTime/').then((res)=>{
+            if(res.data.code==200){
+                cb(res.data.data);
+            }
+        },(err)=>{
+            console.log(err);
+        })
     }
 }

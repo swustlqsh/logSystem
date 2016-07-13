@@ -67,6 +67,9 @@ exports.findByDate=(req,res)=>{
             }
         })
 };
+exports.getNowTime=(req,res)=>{
+    res.json({code:200,data:new Date()});
+};
 //manager
 exports.findDairyByUser=(req,res)=>{
     let per_page=req.body.per_page;

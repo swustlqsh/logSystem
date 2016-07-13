@@ -3,10 +3,11 @@
         <div class="add-log">
             <div class="add-title">
                 <div class="add-date">
-                   2016/09/08
+                   {{nowDate|date}}
                 </div>
                 <div class="add-bts">
                     <button @click="insert()">完成</button>
+                    <button @click="cancel()">取消</button>
                 </div>
             </div>
             <div class="editor">
@@ -29,15 +30,32 @@
                 $('.js-add').removeClass('log-options-active');
                 this.$router.go({name:'user',params:{userId:this.$route.params.userId}});
             });
+            //为了避免主机上的时间不准，获取服务器的时间
+            dairyService.getNowTime(this,(data)=>{
+                this.nowDate=data;
+            });
+        },
+        data(){
+          return{
+              nowDate:''
+          }
         },
         methods:{
             //添加日志
             insert(){
-                let dairyObj={user_id:this.$route.params.userId,content:document.getElementById('editor').value};
-                dairyService.insert(this,dairyObj,()=>{
-                    this.$router.go({name:'user',params:{userId:this.$route.params.userId}});
-                    $('.js-add').removeClass('log-options-active');
-                });
+                if(document.getElementById('editor').value){
+                    let dairyObj={user_id:this.$route.params.userId,content:document.getElementById('editor').value};
+                    dairyService.insert(this,dairyObj,()=>{
+                        this.$router.go({name:'user',params:{userId:this.$route.params.userId}});
+                        $('.js-add').removeClass('log-options-active');
+                    });
+                }else{
+                    alert('输入的内容不可以为空哦~')
+                }
+            },
+            cancel(){
+                this.$router.go({name:'user',params:{userId:this.$route.params.userId}});
+                $('.js-add').removeClass('log-options-active');
             }
         }
     }

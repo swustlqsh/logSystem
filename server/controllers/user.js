@@ -158,7 +158,7 @@ exports.managerLogin=function(req,res){
 };
 //注册，不公开
 exports.insert2=function(req,res){
-    var userObj=new user(req.body);
+    var userObj=new User(req.body);
     bcrypt.genSalt(10,function(err,salt){
         if(err){
             res.json(err);

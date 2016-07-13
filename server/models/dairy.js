@@ -8,6 +8,6 @@ const DairySchema = new Schema({
 	content:{type:String,default:''},
 	create_date:{type:Date,default:Date.now},
 	last_update:{type:Date,default:Date.now}
-});
+},{versionKey:false});
 	
 module.exports = mongoose.model('Dairy',DairySchema);

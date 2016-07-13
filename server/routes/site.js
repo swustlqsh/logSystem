@@ -10,8 +10,8 @@ const userVisit = require('../controllers/userVisit');
 const tokenParser = require('../controllers/tokenParser');
 router
 //manager
-//    .post('/user/findByTeam/', tokenParser.parseToken, user.findByTeam)
-    .get('/user/findByTeam/:teamId', tokenParser.parseToken, user.findByTeam)
+    .post('/user/findByTeam/', tokenParser.parseToken, user.findByTeam)
+    //.get('/user/findByTeam/:teamId', tokenParser.parseToken, user.findByTeam)
     .get('/user/findById/:_id', tokenParser.parseToken, user.findById)
     .get('/user/teamUser', tokenParser.parseToken, user.teamUser)
     .post('/user/insert', tokenParser.parseToken, user.insert)

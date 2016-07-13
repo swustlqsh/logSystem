@@ -25,7 +25,6 @@
                 <pagination :pagination="pagination" :callback="findDairyByUser" :offset="8"></pagination>
             </div>
         </div>
-
     </div>
 </template>
 <script type="text/ecmascript-6">

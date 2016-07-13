@@ -39,10 +39,11 @@
             </tr>
             </tbody>
         </table>
-            <!--<pagination :pagination="pagination" :callback="findUsers(activeTeam)" :offset="1"></pagination>-->
+            <pagination :pagination="pagination" :callback="findUsers" :offset="6"></pagination>
     </div>
 </template>
 <script type="text/ecmascript-6">
+    import listService from '../services/list'
     export default{
         ready() {
             this.find();
@@ -53,24 +54,20 @@
                 teams: [],
                 users: [],
                 user: {},
-                activeTeam: '111111111111111111111111'
-               /* pagination: {
+                activeTeam: '111111111111111111111111',
+                pagination: {
                     total: 0, per_page: 15,
                     from: 0, to: 1,
                     current_page: 1,
                     last_page: 1
                 },
-                paginate: 1*/
+                paginate: 1
             }
         },
         methods: {
             find(){
-                this.$http.get('http://localhost:1234/team/find').then((res) => {
-                    if (res.data.code == 200) {
-                        this.teams = res.data.data;
-                    }
-                }, (err) => {
-                    console.log(err);
+                listService.findTeam(this,(data)=>{
+                    this.teams=data;
                 });
             },
             update(team){
@@ -88,16 +85,10 @@
                             alert('请填写部门名称！')
                         } else {
                             let teamObj = {_id: team._id, name: temp.value};
-                            _this.$http.post('http://localhost:1234/team/update', teamObj).then((res) => {
-                                if (res.data.code == 201) {
-                                    alert('此部门已存在，不可重复添加！')
-                                } else if (res.data.code == 200) {
-                                    _this.find();
-                                    _this.findUsers(this.activeTeam);
-                                }
-                            }, (err) => {
-                                console.log(err);
-                            });
+                            listService.updateTeam(_this,teamObj,(data)=>{
+                                _this.find();
+                                _this.findUsers(this.activeTeam);
+                            })
                         }
                     })
                 } else {
@@ -127,15 +118,9 @@
                             alert('请填写部门名称！')
                         } else {
                             let teamObj = {name: name};
-                            this.$http.post('http://localhost:1234/team/insert', teamObj).then((res)=> {
-                                if (res.data.code == 201) {
-                                    alert('此部门已存在，不可重复添加！')
-                                } else if (res.data.code == 200) {
-                                    document.getElementById('teamList').removeChild(document.getElementById('teamList').children[2]);
-                                    this.find();
-                                }
-                            }, (err)=> {
-                                console.log(err);
+                            listService.insertTeam(this,teamObj,(data)=>{
+                                document.getElementById('teamList').removeChild(document.getElementById('teamList').children[2]);
+                                this.find();
                             })
                         }
                     });
@@ -144,41 +129,27 @@
                 }
             },
             remove(teamId){
-                this.$http.delete('http://localhost:1234/team/' + teamId).then((res)=> {
-                    if (res.data.code == 203) {
-                        alert('此部门下有员工，不可删除！')
-                    } else if (res.data.code == 200) {
-                        this.find();
-                    }
-                }, (err)=> {
-                    console.log(err);
-                })
-            },
-            findUsers(teamId){
-                this.$http.get('http://localhost:1234/user/findByTeam/'+teamId).then((res) => {
-                    if (res.data.code == 200) {
-                        this.users = res.data.data;
-                    }
-                }, (err) => {
-                    console.log(err);
+                listService.removeTeam(this,teamId,(data)=>{
+                    this.find();
                 });
             },
-            /*findUsers(teamId){
+            findUsers(teamId){
                 var data = {
                     pagnite: this.pagination.per_page,
                     page: this.pagination.current_page,
                     teamId: teamId
                 };
-                this.$http.post('http://localhost:1234/user/findByTeam/', data).then((res) => {
-                    if (res.data.code == 200) {
-                        this.users = res.data.data;
-                        this.pagination.total = res.data.total;
+                listService.findUsers(this,data,(data)=>{
+                    this.users = data.data;
+                    this.pagination.total = data.sum;
+                    if(data.sum>this.pagination.per_page){
                         this.pagination.last_page = (this.pagination.total % this.pagination.per_page) == 0 ? (this.pagination.total / this.pagination.per_page):(this.pagination.total / this.pagination.per_page)+1
+                    }else{
+                        this.pagination.last_page=1;
                     }
-                }, (err) => {
-                    console.log(err);
-                });
-            },*/
+                    this.pagination.last_page = (this.pagination.total % this.pagination.per_page) == 0 ? (this.pagination.total / this.pagination.per_page):(this.pagination.total / this.pagination.per_page)+1
+                })
+            },
             insertUser(){
                 if (document.getElementById('td0') == undefined) {
                     let tr = document.getElementById('userTbody').insertRow(0);
@@ -207,15 +178,9 @@
                                 alert('邮箱不匹配！')
                             } else {
                                 let userObj = {name: value0, email: value1, team: value2};
-                                this.$http.post('http://localhost:1234/user/insert', userObj).then((res)=> {
-                                    if (res.data.code == 201) {
-                                        alert('此邮箱已注册，不可重复注册！')
-                                    } else if (res.data.code == 200) {
-                                        document.getElementById('userTbody').deleteRow(0);
-                                        this.findUsers(this.activeTeam);
-                                    }
-                                }, (err)=> {
-                                    console.log(err);
+                                listService.insertUser(this,userObj,(data)=>{
+                                    document.getElementById('userTbody').deleteRow(0);
+                                    this.findUsers(this.activeTeam);
                                 })
                             }
                         } else {
@@ -263,14 +228,8 @@
                                 alert('邮箱不匹配！')
                             } else {
                                 let userObj = {_id: user._id, name: value0, email: value1, team: value2};
-                                this.$http.post('http://localhost:1234/user/update', userObj).then((res)=> {
-                                    if (res.data.code == 201) {
-                                        alert('此邮箱已注册，不可重复注册！')
-                                    } else if (res.data.code == 200) {
-                                        this.findUsers(this.activeTeam);
-                                    }
-                                }, (err)=> {
-                                    console.log(err);
+                                listService.updateUser(this,userObj,(data)=>{
+                                    this.findUsers(this.activeTeam);
                                 })
                             }
                         } else {
@@ -285,17 +244,13 @@
                 }
             },
             removeUser(userId){
-                this.$http.delete('http://localhost:1234/user/' + userId).then((res)=> {
-                    if (res.data.code == 200) {
-                        this.findUsers(this.activeTeam);
-                    }
-                }, (err)=> {
-                    console.log(err);
+                listService.removeUser(this,userId,(data)=>{
+                    this.findUsers(this.activeTeam);
                 })
             }
-        }/*,
+        },
         components: {
             pagination: require('vue-bootstrap-pagination')
-        }*/
+        }
     }
 </script>

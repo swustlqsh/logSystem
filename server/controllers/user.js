@@ -10,7 +10,7 @@ const jwt = require('jwt-simple');
 const _=require('lodash');
 
 //以下是manager
-exports.findByTeam=(req,res)=>{
+/*exports.findByTeam=(req,res)=>{
     let query={};
     if(req.body.teamId!='111111111111111111111111'){
         query.team=req.body.teamId;
@@ -27,6 +27,22 @@ exports.findByTeam=(req,res)=>{
                 User.count(query, (err, sum)=> {
                     res.json({code: 200, data: users, total: sum})
                 })
+            }
+        });
+};*/
+exports.findByTeam=(req,res)=>{
+    let query={};
+    if(req.params.teamId!='111111111111111111111111'){
+        query.team=req.params.teamId;
+    }
+    User.find(query)
+        .sort({create_date: -1})
+        .populate('team')
+        .exec((err, users)=> {
+            if (err) {
+                res.json({code: 555, data: err})
+            } else {
+                res.json({code: 200, data: users});
             }
         });
 };

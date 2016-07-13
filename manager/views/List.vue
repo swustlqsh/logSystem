@@ -1,8 +1,7 @@
 <template>
     <div id="teamList" class="list-group col-md-3 border leftBorder">
         <button class="btn btn-info margin15" @click="insert()">添加部门</button>
-        <a id="111111111111111111111111" class="list-group-item inBorder bg-grey"
-           @click="activeChange('111111111111111111111111')">
+        <a id="111111111111111111111111" class="list-group-item inBorder bg-grey">
             <span @click="activeChange('111111111111111111111111')" class="hand">topxgun</span>
         </a>
         <a id='{{team._id}}' class="list-group-item inBorder" v-for="team in teams">
@@ -40,7 +39,7 @@
             </tr>
             </tbody>
         </table>
-        <pagination :pagination="pagination" :callback="findUsers(activeTeam)" :offset="1"></pagination>
+        <!--<pagination :pagination="pagination" :callback="findUsers(activeTeam)" :offset="1"></pagination>-->
     </div>
 </template>
 <script type="text/ecmascript-6">
@@ -54,14 +53,14 @@
                 teams: [],
                 users: [],
                 user: {},
-                activeTeam: '111111111111111111111111',
-                pagination: {
-                    total: 0, per_page: 5,
+                activeTeam: '111111111111111111111111'
+               /* pagination: {
+                    total: 0, per_page: 15,
                     from: 0, to: 1,
                     current_page: 1,
                     last_page: 1
                 },
-                paginate: 1
+                paginate: 1*/
             }
         },
         filters: {
@@ -81,7 +80,6 @@
                 this.$http.get('http://localhost:1234/team/find').then((res) => {
                     if (res.data.code == 200) {
                         this.teams = res.data.data;
-
                     }
                 }, (err) => {
                     console.log(err);
@@ -169,11 +167,20 @@
                 })
             },
             findUsers(teamId){
+                this.$http.get('http://localhost:1234/user/findByTeam/'+teamId).then((res) => {
+                    if (res.data.code == 200) {
+                        this.users = res.data.data;
+                    }
+                }, (err) => {
+                    console.log(err);
+                });
+            },
+            /*findUsers(teamId){
                 var data = {
                     pagnite: this.pagination.per_page,
                     page: this.pagination.current_page,
                     teamId: teamId
-                }
+                };
                 this.$http.post('http://localhost:1234/user/findByTeam/', data).then((res) => {
                     if (res.data.code == 200) {
                         this.users = res.data.data;
@@ -183,7 +190,7 @@
                 }, (err) => {
                     console.log(err);
                 });
-            },
+            },*/
             insertUser(){
                 if (document.getElementById('td0') == undefined) {
                     let tr = document.getElementById('userTbody').insertRow(0);
@@ -298,9 +305,9 @@
                     console.log(err);
                 })
             }
-        },
+        }/*,
         components: {
             pagination: require('vue-bootstrap-pagination')
-        }
+        }*/
     }
 </script>

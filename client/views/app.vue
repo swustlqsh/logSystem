@@ -36,6 +36,7 @@
     </div>
 </template>
 <script type="text/ecmascript-6">
+    import loginService from '../services/login';
     export default{
         ready(){
             //个人中心悬浮

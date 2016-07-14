@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="editor">
-                <textarea id="editor" placeholder="请输入日志内容。。。" autofocus></textarea>
+                <textarea id="editor"  autofocus></textarea>
             </div>
         </div>
     </div>
@@ -22,7 +22,20 @@
         ready(){
             //富文本编辑器
             var editor = new Simditor({
-                textarea: $('#editor')
+                textarea: $('#editor'),
+                placeholder:"请输入日志内容。。。123",
+                toolbar:['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale',
+                    'color', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', 'image', 'hr',
+                'indent', 'outdent', 'alignment'
+                ],
+                defaultImage : '../imgs/header.png',
+                upload : {
+                    url : 'http://localhost:1234/img/upload', //文件上传的接口地址
+                    params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
+                    fileKey: 'fileDataFileName', //服务器端获取文件数据的参数名
+                    connectionCount: 3,
+                    leaveConfirm: '正在上传文件'
+                }
             });
             //为了避免主机上的时间不准，获取服务器的时间（今日零点）来判断是否有今天的日志
             dairyService.insertDairy(this,this.$route.params.userId,()=>{

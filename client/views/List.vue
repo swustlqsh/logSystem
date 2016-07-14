@@ -57,7 +57,7 @@
                     obj.hide();
                 }
             });
-            $('.js-calendar').on('click',() =>{
+            $('.js-calendar').unbind('click').on('click',() =>{
                 if(this.$route.name=='dairy'){
                     confirm('请在日志列表页面进行此操作^_^')
                 }else if(this.$route.name=='user'){

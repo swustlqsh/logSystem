@@ -12,19 +12,25 @@ const _=require('lodash');
 //以下是manager
 exports.findByTeam=(req,res)=>{
     let query={};
+    console.log(req.body.teamId);
     if(req.body.teamId!='111111111111111111111111'){
         query.team=req.body.teamId;
     }
+    let per_page=req.body.per_page;
+    let current_page=req.body.current_page;
+    console.log(query);
     User.find(query)
         .sort({create_date: -1})
         .populate('team')
-        .limit(req.body.pagnite)
-        .skip(req.body.pagnite * (req.body.page - 1))
+        .skip(per_page*(current_page-1))
+        .limit(per_page)
         .exec((err, users)=> {
             if (err) {
                 res.json({code: 555, data: err})
             } else {
+                console.log(users);
                 User.count(query, (err, sum)=> {
+
                     res.json({code: 200, data: users, sum: sum})
                 })
             }

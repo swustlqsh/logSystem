@@ -147,7 +147,6 @@
                 };
                 listService.findUsers(this,data,(data)=>{
                     this.users = data.data;
-                    console.log(data.data);
                     this.pagination.total = data.sum;
                     if(data.sum>this.pagination.per_page){
                         this.pagination.last_page = (this.pagination.total % this.pagination.per_page) == 0 ? (this.pagination.total / this.pagination.per_page):(this.pagination.total / this.pagination.per_page)+1

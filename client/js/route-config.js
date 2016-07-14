@@ -3,11 +3,11 @@
  */
 export function configRouter(router){
     router.map({
-       /* '*':{
+        '*':{
             component:resolve=> {
                 require(['../views/Login.vue'], resolve);
             }
-        },*/
+        },
         '/login':{
             name:'login',
             component:resolve=>{

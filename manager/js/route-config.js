@@ -3,6 +3,9 @@
  */
 export function configRouter(router){
     router.map({
+        '/*':{
+            component:require('../views/login.vue')
+        },
         '/login':{
             name:'login',
             component:require('../views/login.vue')

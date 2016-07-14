@@ -1,7 +1,7 @@
 /**
  * Created by 刘娟娟 on 2016/7/13.
  */
-import {API_URL} from '../../config'
+const API_URL=require('../../config').API_URL;
 export default{
     findUserById(app, userId, cb){
         app.$http.get(API_URL + '/user/findById/' + userId).then((res)=> {

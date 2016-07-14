@@ -7,7 +7,7 @@ import {API_URL} from '../../config'
 Vue.use(VueResource);
 Vue.use(VueRouter);
 // 2016/07/10 格式的时间
-Vue.filter('date',(date)=>{
+Vue.filter('date',date=>{
     let d = new Date(date);
     let year = d.getFullYear();
     let month = d.getMonth() > 8 ? d.getMonth() + 1 : '0' + (d.getMonth() + 1);
@@ -15,7 +15,7 @@ Vue.filter('date',(date)=>{
     return year + '/' + month + '/' + da;
 });
 // 2016/07/10 xx:xx:xx格式的时间
-Vue.filter('dateWithSecond',(date)=>{
+Vue.filter('dateWithSecond',date=>{
     let d = new Date(date);
     let year = d.getFullYear();
     let month = d.getMonth() > 8 ? d.getMonth() + 1 : '0' + (d.getMonth() + 1);

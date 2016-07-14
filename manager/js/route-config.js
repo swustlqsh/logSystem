@@ -3,26 +3,38 @@
  */
 export function configRouter(router){
     router.map({
-        '/*':{
-            component:require('../views/login.vue')
+        '*':{
+            component:resolve=>{
+                require(['../views/login.vue'],resolve)
+            }
         },
         '/login':{
             name:'login',
-            component:require('../views/login.vue')
+            component:resolve=>{
+                require(['../views/login.vue'],resolve)
+            }
         },
         '/list':{
-            component:require('../views/index.vue'),
+            component:resolve=>{
+                require(['../views/index.vue'],resolve)
+            },
             subRoutes:{
                 '/':{
-                    component:require('../views/List.vue')
+                    component:resolve=>{
+                        require(['../views/List.vue'],resolve)
+                    }
                 },
                 '/auth/:userId':{
                     name:'auth',
-                    component:require('../views/Auth.vue')
+                    component:resolve=>{
+                        require(['../views/Auth.vue'],resolve)
+                    }
                 },
                 '/dairy/:userId':{
                     name:'dairy',
-                    component:require('../views/Dairy.vue')
+                    component:resolve=>{
+                        require(['../views/Dairy.vue'],resolve)
+                    }
                 }
             }
         }

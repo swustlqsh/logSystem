@@ -18,7 +18,7 @@ exports.findByTeam=(req,res)=>{
     let per_page=req.body.per_page;
     let current_page=req.body.current_page;
     User.find(query)
-        .sort({team: 1,create_date:-1})
+        .sort({team: 1,name:1,create_date:-1})
         .populate('team')
         .skip(per_page*(current_page-1))
         .limit(per_page)
@@ -26,9 +26,7 @@ exports.findByTeam=(req,res)=>{
             if (err) {
                 res.json({code: 555, data: err})
             } else {
-                console.log(users);
                 User.count(query, (err, sum)=> {
-
                     res.json({code: 200, data: users, sum: sum})
                 })
             }

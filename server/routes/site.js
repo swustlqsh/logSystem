@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
+const imgToken = require('../controllers/imgToken');
 const site = require('../controllers/site');
 const dairy = require('../controllers/dairy');
 const team = require('../controllers/team');
@@ -31,6 +32,7 @@ router
 
     .post('/dairy/findByUser/',tokenParser.parseToken, dairy.findDairyByUser)
     //client
+    .get('/img/token', imgToken.token)
     .get('/user/clientLogin/:email', user.clientLogin)
     .get('/site/zeroTime', site.zeroTime)
 

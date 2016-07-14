@@ -1,7 +1,7 @@
 /**
  * Created by 刘娟娟 on 2016/7/11.
  */
-import {API_URL} from '../../config'
+const API_URL=require('../../config').API_URL;
 export default {
     findByUser(app,userId,cb){
         app.$http.get(API_URL+'/dairy/findByUser/'+userId).then((res)=>{

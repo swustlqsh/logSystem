@@ -20,23 +20,26 @@
     import dairyService from '../services/dairy'
     export default{
         ready(){
+            dairyService.getToken(this,token=>{
+                   this.token=token;
+             });
             //富文本编辑器
             var editor = new Simditor({
                 textarea: $('#editor'),
-                placeholder:"请输入日志内容。。。123",
+                placeholder:"请输入日志内容。。。",
                 toolbar:['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale',
                     'color', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', 'image', 'hr',
                 'indent', 'outdent', 'alignment'
                 ],
                 defaultImage : '../imgs/header.png',
                 upload : {
-                    url : 'http://localhost:1234/img/upload', //文件上传的接口地址
-                    params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
-                    fileKey: 'fileDataFileName', //服务器端获取文件数据的参数名
+                    url : 'http://up.qiniu.com/', //文件上传的接口地址
+                    params: {token:'PMik_qWU77vR96mdj3M7dgcfQKthFD5gurFMucfF:ZhIo4Ivl1IVGR1QOpoZ4ZhRrSf0=:eyJzY29wZSI6Im15cWluaXUiLCJkZWFkbGluZSI6MTQ2ODQ5MTIwN30='}, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
+                    fileKey: 'file', //服务器端获取文件数据的参数名
                     connectionCount: 3,
                     leaveConfirm: '正在上传文件'
                 }
-            });
+        });
             //为了避免主机上的时间不准，获取服务器的时间（今日零点）来判断是否有今天的日志
             dairyService.insertDairy(this,this.$route.params.userId,()=>{
                 confirm('今天你已经写了日志，不可以重复写，直接修改就可以喽~');
@@ -50,7 +53,8 @@
         },
         data(){
           return{
-              nowDate:''
+              nowDate:'',
+              token:''
           }
         },
         methods:{

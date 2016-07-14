@@ -37,5 +37,12 @@ export default{
         },(err)=>{
             console.log(err);
         })
+    },
+    getToken(app,cb){
+        app.$http.get(API_URL+'/img/token').then(res=>{
+            cb(res.data.token);
+        },err=>{
+            console.log(err);
+        })
     }
 }

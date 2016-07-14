@@ -71,7 +71,23 @@
             });
             //富文本编辑器初始化
             this.editor = new Simditor({
-                textarea: $('#editor')
+                textarea: $('#editor'),
+                placeholder:"请输入日志内容。。。",
+                toolbar:['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale',
+                    'color', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', 'image', 'hr',
+                    'indent', 'outdent', 'alignment'
+                ],
+                defaultImage : '../imgs/header.png',
+                upload : {
+                    url : 'http://up.qiniu.com/', //文件上传的接口地址
+                    params: {token:'PMik_qWU77vR96mdj3M7dgcfQKthFD5gurFMucfF:ZhIo4Ivl1IVGR1QOpoZ4ZhRrSf0=:eyJzY29wZSI6Im15cWluaXUiLCJkZWFkbGluZSI6MTQ2ODQ5MTIwN30='}, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
+                    fileKey: 'file', //服务器端获取文件数据的参数名
+                    connectionCount: 3,
+                    leaveConfirm: '正在上传文件'
+                },
+                success:data=>{
+                    console.log(data);
+                }
             });
             //列表内容初始化
             this.findByUser();

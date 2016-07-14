@@ -27,7 +27,17 @@
             login(){
                 loginService.login(this,this.user,(data)=>{
                     sessionStorage.setItem('user',data);
-                    this.$router.go('list')
+                    this.$router.go('list');
+                    /*let _this=this;
+                    saveUser();
+                    function saveUser(){
+                        sessionStorage.setItem('user',data);
+                        jumpList()
+                    }
+                    function jumpList(){
+                        _this.$router.go('list')
+                    }*/
+
                 })
             }
         }

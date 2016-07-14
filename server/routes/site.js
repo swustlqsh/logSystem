@@ -34,6 +34,9 @@ router
     .get('/user/clientLogin/:email', user.clientLogin)
     .get('/site/zeroTime', site.zeroTime)
 
+    .get('/userVisit/findTeamAuth/:userId', userVisit.findTeamAuth)
+    .post('/userVisit/findUserByTeam/', userVisit.findUserByTeam)
+
     //查看今日日志是否存在，若存在则不可以再次添加，只可修改。
     .get('/dairy/isInsert/:userId', dairy.isInsert)
     .get('/dairy/findByUser/:userId', dairy.findByUser)

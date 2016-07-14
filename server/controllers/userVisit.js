@@ -74,10 +74,14 @@ exports.findUserByTeam=(req,res)=>{
             res.json({code:555,data:err})
         }else{
             if(data&&data.length>0){
-                _.filter(data,(x)=>{
-                    return x.visit_id;
+                let arr=[];
+                data.forEach((x)=>{
+                    if(x.visit_id&&x.visit_id._id){
+                        let obj={_id:x.visit_id._id,name:x.visit_id.name};
+                        return arr.push(obj);
+                    }
                 });
-                res.json({code:200,data:data})
+                res.json({code:200,data:arr})
             }else{
                 res.json({code:333,data:'无数据'})
             }

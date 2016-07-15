@@ -8,7 +8,7 @@
             <div class="login-form">
                 <h1 class="login-title">登录</h1>
                 <label for="email" class="login-label">工作邮箱</label>
-                <input type="text" name="email" class="login-txt" id="email">
+                <input type="text" name="email" class="login-txt" id="email" v-model="user.email">
                 <button class="login-btn" @click="login()">登录</button>
             </div>
         </div>

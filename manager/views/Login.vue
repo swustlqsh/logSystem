@@ -7,7 +7,7 @@
             <br/>
             <label for="inputPassword" class="sr-only">密码</label>
             <input type="password" id="inputPassword" class="form-control"  required v-model="user.password">
-            <button class="btn btn-lg btn-info btn-block" type="submit" @click="login()">登录</button>
+            <button class="btn btn-lg btn-info btn-block"  @click="managerLogin()">登录</button>
         </form>
     </div>
 </template>
@@ -16,6 +16,9 @@
 <script type="text/ecmascript-6">
     import loginService from '../services/login'
     export default {
+        route:{
+
+        },
         ready(){
         },
         data () {
@@ -24,20 +27,12 @@
             }
         },
         methods: {
-            login(){
+            managerLogin(){
+                console.log('111');
                 loginService.login(this,this.user,(data)=>{
+                    console.log('222');
                     sessionStorage.setItem('user',data);
-                    this.$router.go('list');
-                    /*let _this=this;
-                    saveUser();
-                    function saveUser(){
-                        sessionStorage.setItem('user',data);
-                        jumpList()
-                    }
-                    function jumpList(){
-                        _this.$router.go('list')
-                    }*/
-
+                    this.$router.go({name:'list'});
                 })
             }
         }

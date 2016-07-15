@@ -3,11 +3,6 @@
  */
 export function configRouter(router){
     router.map({
-        '*':{
-            component:resolve=>{
-                require(['../views/login.vue'],resolve)
-            }
-        },
         '/login':{
             name:'login',
             component:resolve=>{
@@ -15,6 +10,7 @@ export function configRouter(router){
             }
         },
         '/list':{
+            name:'list',
             component:resolve=>{
                 require(['../views/index.vue'],resolve)
             },
@@ -38,6 +34,8 @@ export function configRouter(router){
                 }
             }
         }
-        
+    });
+    router.redirect({
+        '*': '/login'
     })
 }

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
+import Init from '../views/Init.vue'
 import {configRouter} from './route-config'
 import {API_URL} from '../../config'
 
@@ -26,10 +27,10 @@ Vue.filter('dateWithSecond',date=>{
     return year + '-' + month + '-' + da + ' ' + hour + ':' + min + ':' + sec;
 });
 Vue.http.headers.common['Authorization'] = sessionStorage.getItem('user');
-const app=Vue.extend({});
-const router=new VueRouter({hashbang:false});
+//const app=Vue.extend({});
+const router=new VueRouter({});
 
 configRouter(router);
 
-router.start(app,'#app');
+router.start(Init,'#app');
 

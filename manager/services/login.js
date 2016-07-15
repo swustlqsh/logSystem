@@ -10,6 +10,7 @@ export default{
             }else if(res.data.code==555||res.data.code==888){
                 console.log(res.data.data);
             }else if(res.data.code==200){
+                console.log('989898');
                 cb(res.data.data);
             }
         },(err)=>{

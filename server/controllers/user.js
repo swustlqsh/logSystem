@@ -152,6 +152,7 @@ exports.findUserIdByTeam=(req,res)=>{
 };
 //登录
 exports.managerLogin=function(req,res){
+    console.log('login')
     if(req.body.email&&req.body.password){
         User.findOne({email:req.body.email},function(err,user){
             if(err){
@@ -174,6 +175,7 @@ exports.managerLogin=function(req,res){
                                 if(err){
                                     res.json({code:555,data:err});
                                 }else{
+                                    console.log('2131');
                                     res.json({code:200,data:token})
                                 }
                             })

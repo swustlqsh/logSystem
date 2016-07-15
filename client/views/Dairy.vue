@@ -21,7 +21,6 @@
     export default{
         ready(){
             dairyService.getToken(this,token=>{
-                console.log(token);
                    this.token=token;
              });
             //富文本编辑器
@@ -32,17 +31,13 @@
                     'color', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', 'image', 'hr',
                 'indent', 'outdent', 'alignment'
                 ],
-                defaultImage : '../imgs/header.png',
+                defaultImage : '../imgs/userimg.png',
                 upload : {
                     url : 'http://up.qiniu.com/', //文件上传的接口地址
                     params: {token:'PMik_qWU77vR96mdj3M7dgcfQKthFD5gurFMucfF:sDlFM06yr3SdZME6vvJHyXq1J-4=:eyJzY29wZSI6Im15cWluaXUiLCJkZWFkbGluZSI6MTQ2ODU1MDg2NH0='}, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
                     fileKey: 'file', //服务器端获取文件数据的参数名
                     connectionCount: 3,
                     leaveConfirm: '正在上传文件'
-                },
-                success:function(data){
-                    console.log('111');
-                    console.log(data);
                 }
         });
             //为了避免主机上的时间不准，获取服务器的时间（今日零点）来判断是否有今天的日志

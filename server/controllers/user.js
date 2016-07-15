@@ -206,7 +206,7 @@ exports.insert2=function(req,res){
                         if(err){
                             res.json({code:555,data:err});
                         }else{
-                            res.json({code:555,data:data});
+                            res.json({code:200,data:data});
                         }
                     })
                 }

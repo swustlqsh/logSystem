@@ -137,6 +137,19 @@ exports.teamUser=(req,res)=>{
         }
     })
 };
+exports.findUserIdByTeam=(req,res)=>{
+    User.find({team:req.params.teamId},{_id:1},(err,data)=>{
+        if(err){
+            res.json({code:555,data:err});
+        }else{
+            let arr=[];
+            data.forEach((item)=>{
+                arr.push(item._id);
+            });
+            res.json({code:200,data:arr});
+        }
+    })
+};
 //登录
 exports.managerLogin=function(req,res){
     if(req.body.email&&req.body.password){

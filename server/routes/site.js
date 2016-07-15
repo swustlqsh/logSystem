@@ -13,6 +13,7 @@ router
 //manager
     .post('/user/findByTeam/', tokenParser.parseToken, user.findByTeam)
     //.get('/user/findByTeam/:teamId', tokenParser.parseToken, user.findByTeam)
+    .get('/user/findUserIdByTeam/:teamId', tokenParser.parseToken, user.findUserIdByTeam)
     .get('/user/findById/:_id', tokenParser.parseToken, user.findById)
     .get('/user/teamUser', tokenParser.parseToken, user.teamUser)
     .post('/user/insert', tokenParser.parseToken, user.insert)

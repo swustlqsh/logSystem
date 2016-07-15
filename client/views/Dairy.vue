@@ -21,8 +21,9 @@
     export default{
         ready(){
             dairyService.getToken(this,token=>{
-                   this.token=token;
+                  this.token=token;
              });
+            var token=this.token;
             //富文本编辑器
             var editor = new Simditor({
                 textarea: $('#editor'),
@@ -34,7 +35,7 @@
                 defaultImage : '../imgs/userimg.png',
                 upload : {
                     url : 'http://up.qiniu.com/', //文件上传的接口地址
-                    params: {token:'PMik_qWU77vR96mdj3M7dgcfQKthFD5gurFMucfF:sDlFM06yr3SdZME6vvJHyXq1J-4=:eyJzY29wZSI6Im15cWluaXUiLCJkZWFkbGluZSI6MTQ2ODU1MDg2NH0='}, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
+                    params: {token:token}, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
                     fileKey: 'file', //服务器端获取文件数据的参数名
                     connectionCount: 3,
                     leaveConfirm: '正在上传文件'

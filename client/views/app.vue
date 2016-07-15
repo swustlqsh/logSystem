@@ -4,6 +4,7 @@
             <div class="panel-left-options">
                 <ul class="log-options">
                     <li class="js-add" @click="insertDairy(`${$route.path}/dairy`)">
+                        <!--<i class="icon iconfont">&#xe601;</i>-->
                         <img src="../imgs/add.png" alt="添加">
                     </li>
                     <li id="calendar" class="js-calendar">
@@ -13,10 +14,10 @@
                 </ul>
             </div>
             <div class="user-option">
-                <img src="../imgs/header.png" class="js-user" width="80px" alt="头像">
+                <img src="../imgs/userimg.png" class="js-user" width="80px" alt="头像">
                 <div class="header-menu" style="display: none">
                     <div class="user">
-                        <img src="../imgs/header.png" width="100" height="100" alt="头像">
+                        <img src="../imgs/userimg.png" width="100" height="100" alt="头像">
                         <span>刘娟娟</span>
                     </div>
                     <ul class="menu">

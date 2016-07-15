@@ -47,5 +47,16 @@ export default{
         }, (err)=> {
             console.log(err)
         })
+    },
+    checkAll(app,teamId,cb){
+        app.$http.get(API_URL+'/user/findUserIdByTeam/'+teamId).then(res=>{
+            if(res.data.code==200){
+                cb(res.data.data);
+            } else if (res.data.code == 555) {
+                console.log(res.data.data)
+            }
+        }, err=> {
+            console.log(err)
+        })
     }
 }

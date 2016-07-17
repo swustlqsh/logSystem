@@ -8,7 +8,7 @@
             <label for="inputPassword" class="sr-only">密码</label>
             <input type="password" id="inputPassword" class="form-control"  required v-model="user.password">
             <!--<button class="btn btn-lg btn-info btn-block"  @click="managerLogin()">登录</button>-->
-            <a class="btn btn-lg btn-info btn-block" v-link="{name:'list'}"></a>
+            <a class="btn btn-lg btn-info btn-block" v-link="{name:'list'}">登录</a>
         </form>
     </div>
 </template>

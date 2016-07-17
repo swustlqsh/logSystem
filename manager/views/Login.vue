@@ -30,7 +30,7 @@
             managerLogin(){
                 console.log('111');
                 loginService.login(this,this.user,(data)=>{
-                    console.log('222');
+                    console.log('222',data);
                     sessionStorage.setItem('user',data);
                     this.$router.go({name:'list'});
                 })

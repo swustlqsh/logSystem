@@ -44,5 +44,27 @@ export default {
         },(err)=>{
             console.log(err);
         })
+    },
+    findTeamAuth(app,obj,cb){
+        app.$http.get(API_URL+'/userVisit/findTeamAuth/'+obj).then((res)=>{
+            if(res.data.code == 555){
+                console.log(res.data.data);
+            }else if (res.data.code==200){
+                cb(res.data.data);
+            }
+        },(err)=>{
+            console.log(err);
+        })
+    },
+    findUserByTeam(app,obj,cb){
+        app.$http.post(API_URL+"/userVisit/findUserByTeam/",obj).then((res)=>{
+            if(res.data.code == 555){
+                console.log(res.data.data);
+            }else if (res.data.code==200){
+                cb(res.data.data);
+            }
+        },(err)=>{
+            console.log(err);
+        });
     }
 }

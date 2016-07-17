@@ -7,11 +7,15 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+li,button{
+    cursor: pointer;
+}
 /*公司名称*/
 .logo {
     width: 356px;
     height: 122px;
     font-family: "黑体", serif;
+    border-bottom: 1px solid #EAEAEA;
     font-size: 20px;
     color: #C3C3C3;
     position: relative;
@@ -110,4 +114,103 @@
     border-right: none;
     border-bottom: none;
 }
+
+
+
+
+/*部门&员工相关样式*/
+.list-left .logo-dept {
+    background-color: #fff;
+    color: #B2B2B2;
+    height: 90px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+/*.js-dept-list li,.js-empl-list li{
+    border: none;
+}*/
+
+
+
+.logo-dept span {
+    color: #B2B2B2;
+    padding: 20px;
+    width: 80px;
+    font-size: 20px;
+    display: inline-block;
+}
+.logo-dept img{
+    display: inline-block;
+    float: right;
+    margin-top: 40px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+
+.dept-item{
+    border:none !important;
+    font-family: "微软雅黑 Light", serif,Arial;
+}
+
+.dept-item div {
+    width: 355px;
+    margin-left: 20px;
+    border-bottom: 1px solid #EAEAEA;
+    display: block;
+    height: 48px;
+    line-height: 48px;
+}
+
+.dept-item-active {
+    border-bottom: none !important;
+    color: #fff;
+}
+
+.dept-item * {
+    vertical-align: middle;
+
+}
+
+
+
+
+.dept-item span {
+    font-family: "微软雅黑 Light", serif,Arial;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+.dept-item:hover {
+    background-color: #0078DB;
+    border-bottom: 1px solid #0078DB;
+    color: #fff;
+}
+
+.panel-main {
+    float: left;
+    height: 100%;
+    background-color: #fff;
+}
+
+.mask {
+    position: fixed;
+    top: 0;
+    left: 480px;
+    filter: alpha(opacity=60);
+    background-color: #999;
+    z-index: 1002;
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+}
+
+
+
+
+
+
+
+
+
+
 

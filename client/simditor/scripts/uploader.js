@@ -171,11 +171,14 @@ Uploader = (function(superClass) {
           return _this.trigger('uploaderror', [file, xhr, status]);
         };
       })(this),
+      //TODO 修改上传图片地址为七牛地址
       success: (function(_this) {
         return function(result) {
+          var newresult = JSON.parse("{\"file_path\":\"http://7xsp5d.com1.z0.glb.clouddn.com/"+ result.key +"\"}");
           _this.trigger('uploadprogress', [file, file.size, file.size]);
-          _this.trigger('uploadsuccess', [file, result]);
-          return $(document).trigger('uploadsuccess', [file, result, _this]);
+          _this.trigger('uploadsuccess', [file, newresult]);
+
+          return $(document).trigger('uploadsuccess', [file, newresult, _this]);
         };
       })(this),
       complete: (function(_this) {

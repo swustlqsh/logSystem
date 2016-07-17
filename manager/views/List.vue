@@ -50,6 +50,7 @@
     import listService from '../services/list'
     export default{
         ready() {
+
             this.find();
             this.findUsers();
         },
@@ -143,7 +144,8 @@
                 var data = {
                     per_page: this.pagination.per_page,
                     current_page: this.pagination.current_page,
-                    teamId: this.activeTeam
+                    teamId: this.activeTeam,
+                    token:sessionStorage.getItem('user')
                 };
                 listService.findUsers(this,data,(data)=>{
                     this.users = data.data;

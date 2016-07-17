@@ -49,6 +49,7 @@ exports.findByTeam=(req,res)=>{
         });
 };*/
 exports.findById=(req,res)=>{
+    console.log(req.params._id)
     User.findById(req.params._id,(err,user)=>{
         if(err){
             res.json({code:555,data:err})

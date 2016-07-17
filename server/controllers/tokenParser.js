@@ -11,5 +11,5 @@ exports.parseToken = function (req, res, next) {
                     next();
                 }
             }
-        })
+        });
 };

@@ -4,7 +4,7 @@
 const API_URL=require('../../config').API_URL;
 export default{
     findTeam(app,cb){
-        app.$http.get(API_URL+'/team/find?token='+sessionStorage.getItem('user')).then((res) => {
+        app.$http.get(API_URL+'/team/find').then((res) => {
             if (res.data.code == 200) {
                 cb(res.data.data);
             }else if(res.data.code == 555){
@@ -12,7 +12,7 @@ export default{
             }
         }, (err) => {
             console.log(err);
-        });
+        })
     },
     updateTeam(app,obj,cb){
         app.$http.post(API_URL+'/team/update', obj).then((res) => {

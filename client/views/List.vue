@@ -42,15 +42,13 @@
             </li>
         </ul>
     </div>
-
-
     <!--部门员工列表-->
     <div class="list-left js-empl-list" style="display: none;border:none">
         <div class="logo logo-dept">
             <span>{{dept}}</span>
             <img class="js-back-dept" src="../imgs/back.png">
         </div>
-        <ul >
+        <ul>
             <li v-for="user in userList" class="dept-item js-user-item" @click="showUserLog($index)">
                 <div>
                     <img src="../imgs/ic_person.png" alt="员工小图标">
@@ -59,8 +57,6 @@
             </li>
         </ul>
     </div>
-
-
     <!--日志富文本编辑器-->
     <div class="list-right">
         <div class="add-title">
@@ -296,11 +292,12 @@
                 $('#list li').eq(index).children('div').addClass('list-active');
                 if (this.list && this.list.length > 0) {
                     this.dairy = this.list[index];
-                    if(this.list[index].create_date<this.zeroTime){
+                    this.editor.setValue(this.list[index].content);
+                    if(this.list[index].create_date<this.zeroTime&& this.selectedUser.name==undefined){
                         $('.simditor-body').attr('contenteditable', 'false');
                         $('.simditor-toolbar').hide();
                         $('.simditor-placeholder').text("");
-                    }else{
+                    }else if(this.list[index].create_date>this.zeroTime&& this.selectedUser.name==undefined){
                         $('.simditor-body').attr('contenteditable', 'true');
                         $('.simditor-toolbar').show();
                         $('.simditor-placeholder').text("请输入日志信息。。。");

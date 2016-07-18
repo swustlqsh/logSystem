@@ -24,6 +24,9 @@
             </tr>
             </thead>
             <tbody id="userTbody">
+            <tr v-show="!users||users.length<1">
+                <td>暂无员工</td>
+            </tr>
             <tr v-for="user in users" id="{{user._id}}">
                 <td>{{user.name?user.name:'匿名用户'}}</td>
                 <td>{{user.email}}</td>

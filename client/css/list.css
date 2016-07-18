@@ -150,7 +150,7 @@ li,button{
 
 .dept-item{
     border:none !important;
-    font-family: "微软雅黑 Light", serif,Arial;
+    font-family: "Microsoft YaHei", sans-serif;
 }
 
 .dept-item div {
@@ -176,7 +176,7 @@ li,button{
 
 
 .dept-item span {
-    font-family: "微软雅黑 Light", serif,Arial;
+    font-family: "Microsoft YaHei", sans-serif;
     font-size: 15px;
     margin-left: 20px;
 }

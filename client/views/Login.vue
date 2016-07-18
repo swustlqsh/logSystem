@@ -19,7 +19,7 @@
     export default{
         data(){
             return {
-                user:{email:'1003512331@qq.com'}
+                user:{email:''}
             }
         },
         methods: {

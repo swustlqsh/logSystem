@@ -296,7 +296,17 @@
                 $('#list li').eq(index).children('div').addClass('list-active');
                 if (this.list && this.list.length > 0) {
                     this.dairy = this.list[index];
-                    this.editor.setValue(this.list[index].content);
+                    if(this.list[index].create_date<this.zeroTime){
+                        $('.simditor-body').attr('contenteditable', 'false');
+                        $('.simditor-toolbar').hide();
+                        $('.simditor-placeholder').text("");
+                    }else{
+                        $('.simditor-body').attr('contenteditable', 'true');
+                        $('.simditor-toolbar').show();
+                        $('.simditor-placeholder').text("请输入日志信息。。。");
+                        this.editor.setValue(this.list[index].content);
+                    }
+
                 } else {
                     this.dairy = {create_date: '', content: ''};
                     this.editor.setValue('');

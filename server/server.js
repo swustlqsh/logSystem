@@ -2,21 +2,13 @@ const express = require('express');
 const app = express();
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const cookieParser=require('cookie-parser');
-const session=require('express-session');
 const favicon=require('serve-favicon');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/workbook');
 
 const Site = require('./routes/site');
  app.use(favicon(__dirname+'/img/txg.ico'));
-app.use(cookieParser());
-app.use(session({
-	secret:'12345',
-	name:'user',
-	resave:false,
-	saveUninitialized: false
-}));
+
 
 app.all('*',function(req,res,next){
 	res.set('Access-Control-Allow-Origin', '*');

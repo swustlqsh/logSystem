@@ -26,7 +26,6 @@
             }, function () {
                 $(this).attr('src', '../imgs/add_select.png');
             });
-
             dairyService.getToken(this, (token)=> {
                 this.token = token;
                 //在拿到token后，富文本编辑器初始化
@@ -47,10 +46,6 @@
                     }
                 });
             });
-
-
-
-
             //为了避免主机上的时间不准，获取服务器的时间（今日零点）来判断是否有今天的日志
             dairyService.insertDairy(this, this.$route.params.userId, ()=> {
 
@@ -90,6 +85,11 @@
                     dairyService.insert(this, dairyObj, ()=> {
                         this.$router.go({name: 'user', params: {userId: this.$route.params.userId}});
                         $('.js-add').removeClass('log-options-active');
+                        $('img[title="add"]').attr('src', '../imgs/add.png').unbind('hover').hover(function () {
+                            $(this).attr('src', '../imgs/add_hover.png');
+                        }, function () {
+                            $(this).attr('src', '../imgs/add.png');
+                        });
                     });
                 } else {
                     swal(
@@ -102,6 +102,11 @@
             cancel(){
                 this.$router.go({name: 'user', params: {userId: this.$route.params.userId}});
                 $('.js-add').removeClass('log-options-active');
+                $('img[title="add"]').attr('src', '../imgs/add.png').unbind('hover').hover(function () {
+                    $(this).attr('src', '../imgs/add_hover.png');
+                }, function () {
+                    $(this).attr('src', '../imgs/add.png');
+                });
             }
         }
     }

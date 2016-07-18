@@ -9,6 +9,9 @@
             </div>
         </div>
         <div class="col-lg-12">
+            <div v-show="!list||list.length<1" style="margin-left: 20px">
+                暂无日志
+            </div>
             <div class="col-lg-3" v-for="item in list">
             <div class="panel panel-info">
                 <div class="panel-heading">

@@ -7,6 +7,9 @@
             <a class="btn btn-info btn-sm pull-right" v-link="{path:'/list'}">返回员工列表</a>
         </div>
         <div class="col-lg-12">
+            <div v-show="!teamUsers||teamUsers.length<1">
+                请先添加部门和员工再进行授权~~
+            </div>
             <div v-for="team in teamUsers" class="top45">
                 <h3 class="text-info">
                     <input type="checkbox" id="{{team._id}}" @click="checkAll(team._id)">

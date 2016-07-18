@@ -155,12 +155,13 @@ li,button{
 
 .dept-item div {
     width: 355px;
-    margin-left: 20px;
+    margin-left: 40px;
     border-bottom: 1px solid #EAEAEA;
     display: block;
     height: 48px;
     line-height: 48px;
 }
+
 
 .dept-item-active {
     border-bottom: none !important;

@@ -1,7 +1,6 @@
 <template>
     <!--遮罩层-->
     <div id="mask" class="mask" style="display:none;"></div>
-
     <div class="panel">
         <div class="panel-left">
             <div class="panel-left-options">

@@ -35,8 +35,8 @@
         </div>
         <ul>
             <li  v-for="item in deptList" class="dept-item js-dept-item" @click="findUserByTeam($index)">
-                <div>
-                    <img src="../imgs/ic_folder.png" alt="部门小图标">
+                <div class="full-dept">
+                    <img src="../imgs/ic_folder@2x.png" alt="部门小图标" style="width: 30px">
                     <span>{{item.name}}</span>
                 </div>
             </li>
@@ -51,7 +51,7 @@
         <ul>
             <li v-for="user in userList" class="dept-item js-user-item" @click="showUserLog($index)">
                 <div>
-                    <img src="../imgs/ic_person.png" alt="员工小图标">
+                    <img src="../imgs/ic_person@2x.png" alt="员工小图标" style="width: 30px">
                     <span>{{user.name}}</span>
                 </div>
             </li>

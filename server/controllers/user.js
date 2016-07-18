@@ -153,7 +153,6 @@ exports.findUserIdByTeam=(req,res)=>{
 };
 //登录
 exports.managerLogin=function(req,res){
-    console.log('login')
     if(req.body.email&&req.body.password){
         User.findOne({email:req.body.email},function(err,user){
             if(err){
@@ -161,7 +160,7 @@ exports.managerLogin=function(req,res){
             }else if(user){
                 bcrypt.compare(req.body.password,user.password,function(err,data){
                     if(err){
-                        res.json({code:555,data:err});
+                        res.json({code:501,data:err});
                     }else{
                         if(data){
                             var obj={_id:user._id};

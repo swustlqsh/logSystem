@@ -52,7 +52,9 @@ exports.findTeamAuth=(req,res)=>{
                 let arrTeam=[];
                 if(data&&data.length>0){
                     data.forEach((x)=>{
-                        arrTeam.push(x.visit_id.team)
+                        if(x.visit_id&&x.visit_id.team){
+                            arrTeam.push(x.visit_id.team)
+                        }
                     });
                     Team.find({_id:{$in:arrTeam}},(err,teams)=>{
                         if(err){

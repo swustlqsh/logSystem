@@ -28,11 +28,10 @@
             }
         },
         methods: {
-
             managerLogin(){
                 loginService.login(this,this.user,(data)=>{
                     sessionStorage.setItem('user',data);
-                    this.$router.go('list');
+                        this.$router.go('list');
                 })
             }
         }

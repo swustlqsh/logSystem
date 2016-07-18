@@ -12,7 +12,7 @@ export default{
             }
         }, (err) => {
             console.log(err);
-        })
+        });
     },
     updateTeam(app,obj,cb){
         app.$http.post(API_URL+'/team/update', obj).then((res) => {
@@ -28,6 +28,7 @@ export default{
         });
     },
     insertTeam(app,obj,cb){
+        //obj.token=sessionStorage.getItem('user');
         app.$http.post(API_URL+'/team/insert', obj).then((res)=> {
             if (res.data.code == 201) {
                 alert('此部门已存在，不可重复添加！')

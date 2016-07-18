@@ -33,6 +33,11 @@
     import authService from '../services/auth'
     const _=require('lodash');
     export default{
+        http:{
+            headers: {
+                Authorization: sessionStorage.getItem('user')
+            }
+        },
         ready(){
             this.find(this.$route.params.userId);
             this.findTeamUser();

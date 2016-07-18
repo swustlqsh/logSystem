@@ -30,6 +30,11 @@
 <script type="text/ecmascript-6">
     import dairyService from '../services/dairy'
     export default{
+        http:{
+            headers: {
+                Authorization: sessionStorage.getItem('user')
+            }
+        },
         ready(){
             this.find(this.$route.params.userId);
             this.findDairyByUser();

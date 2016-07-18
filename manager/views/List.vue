@@ -49,8 +49,12 @@
 <script type="text/ecmascript-6">
     import listService from '../services/list'
     export default{
+        http:{
+            headers: {
+                Authorization: sessionStorage.getItem('user')
+            }
+        },
         ready() {
-
             this.find();
             this.findUsers();
         },

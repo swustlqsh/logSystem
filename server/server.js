@@ -4,10 +4,11 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const favicon=require('serve-favicon');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/workbook');
+const mongoIp=require('../config').mongoIp;
+mongoose.connect('mongodb://'+mongoIp+'/workbook');
 
 const Site = require('./routes/site');
- app.use(favicon(__dirname+'/img/txg.ico'));
+ //app.use(favicon(__dirname+'/img/txg.ico'));
 
 
 app.all('*',function(req,res,next){

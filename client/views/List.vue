@@ -33,6 +33,9 @@
         <div class="logo logo-dept">
             <span>部门</span>
         </div>
+        <ul v-show="!deptList||deptList.length<1">
+            <li style="border: none;margin-left: 40px">暂无权限查看其它人的日志~~</li>
+        </ul>
         <ul>
             <li  v-for="item in deptList" class="dept-item js-dept-item" @click="findUserByTeam($index)">
                 <div class="full-dept">

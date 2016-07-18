@@ -35,6 +35,7 @@ router
     //client
     .get('/img/token', imgToken.token)
     .get('/user/clientLogin/:email', user.clientLogin)
+    .get('/user/clientFindById/:_id', user.findById)
     .get('/site/zeroTime', site.zeroTime)
 
     .get('/userVisit/findTeamAuth/:userId', userVisit.findTeamAuth)

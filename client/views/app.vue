@@ -24,7 +24,7 @@
                 <div class="header-menu" style="display: none">
                     <div class="user">
                         <img src="../imgs/userimg.png" width="100" height="100" alt="头像">
-                        <span>刘娟娟</span>
+                        <span>{{me.name?me.name:'匿名用户'}}</span>
                     </div>
                     <ul class="menu">
                         <li>
@@ -43,7 +43,7 @@
     </div>
 </template>
 <script type="text/ecmascript-6">
-    import loginService from '../services/login';
+    import appService from '../services/app'
     export default{
         ready(){
             //个人中心悬浮
@@ -69,6 +69,12 @@
                 else if ($img.attr('title') == "user")
                     $img.attr('src', '../imgs/user.png');
             });
+            this.myCenter()
+        },
+        data(){
+          return{
+              me:{name:''}
+          }
         },
         methods: {
             //点击加号效果转换及跳转
@@ -99,6 +105,12 @@
             //登出系统
             logout(){
                 this.$router.go({name: 'login'});
+            },
+            //个人中心
+            myCenter(){
+                appService.me(this,this.$route.params.userId,data=>{
+                    this.me=data;
+                })
             }
         }
     }

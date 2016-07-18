@@ -21,7 +21,7 @@
                         <span class="text-date">{{item.create_date|date}}</span>
                     </div>
                     <div class="item-content">
-                        {{{item.content}}}
+                        {{{item.content|logNoPic}}}
                     </div>
                 </div>
             </li>

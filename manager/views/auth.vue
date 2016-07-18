@@ -26,7 +26,6 @@
             <button class="btn btn-info btn-sm" @click="save">保存</button>
             <button class="btn btn-info btn-sm" @click="cancel">取消</button>
         </div>
-
     </div>
 </template>
 <script type="text/ecmascript-6">

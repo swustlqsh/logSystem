@@ -14,7 +14,9 @@ Vue.filter('date',(date)=>{
     let da = d.getDate() > 9 ? d.getDate() : '0' + d.getDate();
     return year + '/' + month + '/' + da;
 });
-
+Vue.filter('logNoPic',(content)=>{
+    return content.replace(/<\s?img[^>]*>/gi, "");
+});
 const app=Vue.extend({});
 const router=new VueRouter({hashbang:false});
 

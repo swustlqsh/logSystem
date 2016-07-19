@@ -153,7 +153,7 @@
             //为了避免主机上的时间不准，获取服务器的时间（今日零点）来判断是否是今天的日志，如果是，可修改，显示‘完成’按钮
             listService.getZeroTime(this, (data)=> {
                 this.zeroTime = data;
-            })
+            });
 
             //部门选择
             var _this = this;
@@ -172,6 +172,10 @@
             //选择员工时点击部门名称旁的后退按钮返回至选择部门页
             $('.js-back-dept').unbind('click').bind('click', ()=> {
                 _this.showDept();
+            });
+            //选择某个具体员工时点击员工名称旁的后退按钮返回至选择人员
+            $('.back_img').unbind('click').bind('click', ()=> {
+                _this.showUser();
             });
 
         /*    //部门列表每一项hover事件

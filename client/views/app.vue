@@ -19,10 +19,10 @@
                 </ul>
             </div>
             <div class="user-option">
-                <img src="../imgs/userimg.png" class="js-user" width="80px" alt="头像">
+                <img src="../imgs/userimg@2x.png" class="js-user" width="80px" alt="头像">
                 <div class="header-menu" style="display: none">
                     <div class="user">
-                        <img src="../imgs/userimg.png" width="100" height="100" alt="头像">
+                        <img src="../imgs/userimg@2x.png" width="100" height="100" alt="头像">
                         <span>{{me.name?me.name:'匿名用户'}}</span>
                     </div>
                     <ul class="menu">

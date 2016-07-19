@@ -167,15 +167,10 @@ li,button{
     border-bottom: none !important;
     color: #fff;
 }
-
 .dept-item * {
     vertical-align: middle;
 
 }
-
-
-
-
 .dept-item span {
     font-family: "Microsoft YaHei", sans-serif;
     font-size: 15px;
@@ -204,6 +199,14 @@ li,button{
     z-index: 1002;
     opacity: 0.5;
     -moz-opacity: 0.5;
+}
+.back_img{
+    display: inline-block;
+    float: right;
+    margin-top: -5px;
+    margin-right: 20px;
+    height: 35px;
+    cursor: pointer;
 }
 
 

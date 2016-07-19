@@ -13,6 +13,7 @@
             <br>
             <img src="../imgs/empl_active.png" style="margin-left:20px;vertical-align: middle;">
             <span style="display:inline;vertical-align:middle;">{{selectedUser.name}}</span>
+            <img class="back_img" src="../imgs/ic_arrow_backwhite@2x.png">
         </div>
         <ul id="list">
             <li v-for="item in list">

@@ -13,7 +13,7 @@
             <br>
             <img src="../imgs/empl_active.png" style="margin-left:20px;vertical-align: middle;">
             <span style="display:inline;vertical-align:middle;">{{selectedUser.name}}</span>
-            <img class="back_img" src="../imgs/ic_arrow_backwhite@2x.png">
+            <img class="back_img" src="../imgs/ic_arrow_backwhite@2x.png" @click="backToUsers()">
         </div>
         <ul id="list">
             <li v-for="item in list">
@@ -173,10 +173,6 @@
             $('.js-back-dept').unbind('click').bind('click', ()=> {
                 _this.showDept();
             });
-            //选择某个具体员工时点击员工名称旁的后退按钮返回至选择人员
-            $('.back_img').unbind('click').bind('click', ()=> {
-                _this.showUser();
-            });
 
         /*    //部门列表每一项hover事件
             $('.js-dept-item').hover(function(){
@@ -257,7 +253,6 @@
                 this.showMask();
                 $('.list-left').hide();
                 $('.js-dept-list').removeClass().addClass('list-left js-dept-list animated  fadeInUp').show();
-
             },
             //显示某一部门的员工列表
             showUser(){
@@ -323,6 +318,10 @@
                 listService.updateDairy(this, obj, ()=> {
                     this.findByUser();
                 })
+            },
+            //选择某个具体员工时点击员工名称旁的后退按钮返回至选择人员
+            backToUsers(){
+                this.showUser();
             }
         }
     }

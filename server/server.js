@@ -5,7 +5,7 @@ import favicon from 'serve-favicon'
 import mongoose from 'mongoose'
 import Site from './routes/site'
 const app = express();
-const mongoIp=require('../config').mongoIp;
+const mongoIp=require('./config').mongoIp;
 mongoose.connect('mongodb://'+mongoIp+'/workbook');
 
 

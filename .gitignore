@@ -1,5 +1,8 @@
 .DS_Store
-node_modules
-client/bowerFile
+client/node_modules
+manager/node_modules
+server/node_modules
+client/dist
+manager/dist
 .idea
 *.log

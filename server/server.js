@@ -4,7 +4,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const favicon=require('serve-favicon');
 const mongoose = require('mongoose');
-const mongoIp=require('../config').mongoIp;
+const mongoIp=require('./config').mongoIp;
 mongoose.connect('mongodb://'+mongoIp+'/workbook');
 
 const Site = require('./routes/site');

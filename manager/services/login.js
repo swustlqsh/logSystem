@@ -1,7 +1,7 @@
 /**
  * Created by 刘娟娟 on 2016/7/13.
  */
-const API_URL=require('../../config').API_URL;
+const API_URL=require('../config').API_URL;
 export default{
     login(app,obj,cb){
         app.$http.post(API_URL+'/user/managerLogin',obj).then((res)=>{

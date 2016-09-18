@@ -3,6 +3,7 @@
  */
 'use strict';
 const Dairy = require('../models/dairy');
+import objPromise from './objPromise'
 //client
 exports.insert=(req,res)=>{
     let dairyObj=new Dairy(req.body);
@@ -31,15 +32,12 @@ exports.isInsert=(req,res)=>{
     today.setMinutes(0);
     today.setSeconds(0);
     today.setMilliseconds(0);
-    Dairy.count({user_id:req.params.userId,create_date:{$gt:today}},(err,data)=>{
-        if(err){
-            res.json({code:555,data:err})
+    objPromise.count(Dairy,{user_id:req.params.userId,create_date:{$gt:today}})
+    .then(count=>{
+        if(count>0){
+            res.json({code:201,data:count})
         }else{
-            if(data>0){
-                res.json({code:201,data:data})
-            }else{
-                res.json({code:200,data:data})
-            }
+            res.json({code:200,data:count})
         }
     })
 };
@@ -83,13 +81,10 @@ exports.findDairyByUser=(req,res)=>{
         if(err){
             res.json({code:555,data:err})
         }else{
-            Dairy.count(query,(err,sum)=>{
-                if(err){
-                    res.json({code:555,data:err})
-                }else{
-                    res.json({code:200,data:data,sum:sum})
-                }
-            })
+            objPromise.count(Dairy,query)
+                .then(count=>{
+                    res.json({code:200,data:data,sum:count})
+                });
         }
     })
 };

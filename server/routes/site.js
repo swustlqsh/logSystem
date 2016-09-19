@@ -18,7 +18,7 @@ router
     .get('/user/teamUser', tokenParser.parseToken, user.teamUser)
     .post('/user/insert', tokenParser.parseToken, user.insert)
     .post('/user/update', tokenParser.parseToken, user.update)
-    .post('/user/insert2', user.insert2)
+    //.post('/user/insert2', user.insert2)
     .post('/user/managerLogin', user.managerLogin)
     .delete('/user/:_id', tokenParser.parseToken, user.remove)
 

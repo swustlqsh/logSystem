@@ -3,7 +3,7 @@ import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import Init from '../views/Init.vue'
 import {configRouter} from './route-config'
-import {API_URL} from '../../config'
+import {API_URL} from '../config'
 
 Vue.use(VueResource);
 Vue.use(VueRouter);

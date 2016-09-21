@@ -4,13 +4,12 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    "client":['./client/js/main.js'
-    ],
-    "manager":['./manager/js/main.js']
+    "client":['./js/main.js']
   },
   output: {
-    path:'[name]',
-    filename: '[name].js'
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
+    filename: 'build.js'
   },
   resolveLoader: {
     root: path.join(__dirname, 'node_modules')

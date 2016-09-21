@@ -2,9 +2,9 @@
  * Created by 刘娟娟 on 2016/7/18.
  */
 var mongoose=require('mongoose');
-var Dairy=require('./server/models/dairy');
-var Team = require('./server/models/team');
-var User=require('./server/models/user');
+var Dairy=require('./models/dairy');
+var Team = require('./models/team');
+var User=require('./models/user');
 var mongoIp=require('./config').mongoIp;
 mongoose.connect('mongodb://'+mongoIp+'/workbook');
 

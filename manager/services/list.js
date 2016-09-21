@@ -1,7 +1,7 @@
 /**
  * Created by 刘娟娟 on 2016/7/13.
  */
-const API_URL=require('../../config').API_URL;
+const API_URL=require('../config').API_URL;
 export default{
     findTeam(app,cb){
         app.$http.get(API_URL+'/team/find').then((res) => {

@@ -1,7 +1,7 @@
 {
   "name": "client",
   "description": "A Vue.js project",
-  "author": "刘娟娟 <1003512331@qq.com>",
+  "author": "刘娟娟",
   "private": true,
   "scripts": {
     "manager": "webpack-dev-server --inline --port 9001  --content-base manager",
